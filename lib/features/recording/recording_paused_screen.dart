@@ -23,7 +23,7 @@ class RecordingPausedScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.screenHorizontal,
             vertical: 16,
@@ -41,19 +41,30 @@ class RecordingPausedScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(patient.name, style: AppTypography.cardTitle.copyWith(fontSize: 15)),
-                        const SizedBox(height: 2),
-                        Text('${patient.age}y ${patient.gender} • Follow-up Visit', style: AppTypography.caption),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            patient.name,
+                            style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            '${patient.age}y ${patient.gender} • Follow-up Visit',
+                            style: AppTypography.caption,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
+                    const SizedBox(width: 8),
                     CareSettingBadge(setting: CareSetting.opd, compact: true),
                   ],
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 24),
 
               Container(
                 width: 90,
@@ -86,7 +97,7 @@ class RecordingPausedScreen extends StatelessWidget {
                 style: AppTypography.body.copyWith(color: AppColors.slate),
               ),
 
-              const Spacer(),
+              const SizedBox(height: 32),
 
               AppButton(
                 label: 'Resume Recording',

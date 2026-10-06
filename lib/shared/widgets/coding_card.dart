@@ -38,33 +38,40 @@ class CodingCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: badgeColor.withOpacity(0.12),
-                      borderRadius: AppRadius.xsBorder,
-                      border: Border.all(color: badgeColor.withOpacity(0.2)),
-                    ),
-                    child: Text(
-                      coding.category,
-                      style: AppTypography.caption.copyWith(
-                        color: badgeColor,
-                        fontWeight: FontWeight.w700,
+              Expanded(
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: badgeColor.withOpacity(0.12),
+                        borderRadius: AppRadius.xsBorder,
+                        border: Border.all(color: badgeColor.withOpacity(0.2)),
+                      ),
+                      child: Text(
+                        coding.category,
+                        style: AppTypography.caption.copyWith(
+                          color: badgeColor,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    coding.code,
-                    style: AppTypography.cardTitle.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppColors.charcoal,
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text(
+                        coding.code,
+                        style: AppTypography.cardTitle.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.charcoal,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              const SizedBox(width: 8),
               ConfidenceBadge(confidence: coding.confidence),
             ],
           ),
@@ -77,13 +84,18 @@ class CodingCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                coding.isConfirmed ? 'Clinician Confirmed' : 'Suggested by AI',
-                style: AppTypography.caption.copyWith(
-                  color: coding.isConfirmed ? AppColors.deepJade : AppColors.slate,
-                  fontWeight: FontWeight.w600,
+              Flexible(
+                child: Text(
+                  coding.isConfirmed ? 'Clinician Confirmed' : 'Suggested by AI',
+                  style: AppTypography.caption.copyWith(
+                    color: coding.isConfirmed ? AppColors.deepJade : AppColors.slate,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
+              const SizedBox(width: 8),
               OutlinedButton.icon(
                 onPressed: onToggleConfirm,
                 icon: Icon(

@@ -88,7 +88,13 @@ class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
                   color: AppColors.deepJade,
                 ),
                 const SizedBox(width: 8),
-                Text('ICD-10 Diagnostic Codes', style: AppTypography.sectionTitle.copyWith(fontSize: 16)),
+                Expanded(
+                  child: Text(
+                    'ICD-10 Diagnostic Codes',
+                    style: AppTypography.sectionTitle.copyWith(fontSize: 16),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 10),
@@ -113,7 +119,13 @@ class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
                   color: AppColors.indigo,
                 ),
                 const SizedBox(width: 8),
-                Text('CPT Procedure & Service Codes', style: AppTypography.sectionTitle.copyWith(fontSize: 16)),
+                Expanded(
+                  child: Text(
+                    'CPT Procedure & Service Codes',
+                    style: AppTypography.sectionTitle.copyWith(fontSize: 16),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 10),

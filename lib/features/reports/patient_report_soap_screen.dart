@@ -141,6 +141,7 @@ class PatientReportSoapScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
                       width: 26,
@@ -170,9 +171,14 @@ class PatientReportSoapScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  badge,
-                  style: AppTypography.caption.copyWith(color: AppColors.slate, fontStyle: FontStyle.italic),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    badge,
+                    textAlign: TextAlign.end,
+                    overflow: TextOverflow.ellipsis,
+                    style: AppTypography.caption.copyWith(color: AppColors.slate, fontStyle: FontStyle.italic),
+                  ),
                 ),
               ],
             ),

@@ -43,7 +43,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
         title: Text('Select Payment Method', style: AppTypography.cardTitle),
       ),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.screenHorizontal,
             vertical: 16,
@@ -94,7 +94,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 color: AppColors.indigo,
               ),
 
-              const Spacer(),
+              const SizedBox(height: 28),
 
               AppButton(
                 label: 'Continue to Payment',

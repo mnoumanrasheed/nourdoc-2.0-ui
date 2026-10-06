@@ -51,14 +51,25 @@ class ConsultationDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(c.patientName, style: AppTypography.cardTitle.copyWith(fontSize: 17)),
-                          const SizedBox(height: 2),
-                          Text('${c.patientAge}y • ${c.patientGender} • ${c.visitType.label}', style: AppTypography.metadata),
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              c.patientName,
+                              style: AppTypography.cardTitle.copyWith(fontSize: 17),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              '${c.patientAge}y • ${c.patientGender} • ${c.visitType.label}',
+                              style: AppTypography.metadata,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       ),
+                      const SizedBox(width: 8),
                       CareSettingBadge(setting: c.careSetting),
                     ],
                   ),
@@ -68,7 +79,14 @@ class ConsultationDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('${c.dateTime} (${c.duration})', style: AppTypography.caption),
+                      Flexible(
+                        child: Text(
+                          '${c.dateTime} (${c.duration})',
+                          style: AppTypography.caption,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
                       StatusChip(status: c.status),
                     ],
                   ),

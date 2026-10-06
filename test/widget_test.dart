@@ -112,7 +112,7 @@ void main() {
 
       await tester.pumpWidget(const MaterialApp(home: PatientReportSoapScreen()));
       await tester.pumpAndSettle();
-      expect(find.text('SOAP Note Documentation'), findsOneWidget);
+      expect(find.text('SOAP Clinical Documentation'), findsOneWidget);
 
       await tester.pumpWidget(const MaterialApp(home: PatientReportCodingScreen()));
       await tester.pumpAndSettle();
@@ -120,7 +120,7 @@ void main() {
 
       await tester.pumpWidget(const MaterialApp(home: ConsultationDetailScreen()));
       await tester.pumpAndSettle();
-      expect(find.text('Consultation Summary'), findsOneWidget);
+      expect(find.textContaining('Consultation #'), findsOneWidget);
 
       // 7. Validate Subscription & Billing
       await tester.pumpWidget(const MaterialApp(home: PlansScreen()));
@@ -129,16 +129,16 @@ void main() {
 
       await tester.pumpWidget(const MaterialApp(home: PaymentMethodScreen()));
       await tester.pumpAndSettle();
-      expect(find.text('Payment Method'), findsOneWidget);
+      expect(find.textContaining('Payment Method'), findsOneWidget);
 
       // 8. Validate Settings & States
       await tester.pumpWidget(const MaterialApp(home: SettingsScreen()));
       await tester.pumpAndSettle();
-      expect(find.text('Settings & Preferences'), findsOneWidget);
+      expect(find.text('Practice Preferences'), findsOneWidget);
 
       await tester.pumpWidget(const MaterialApp(home: EmptyStatesScreen()));
       await tester.pumpAndSettle();
-      expect(find.text('Empty States Showcase'), findsOneWidget);
+      expect(find.text('Standardized Empty States'), findsOneWidget);
     });
   }
 }

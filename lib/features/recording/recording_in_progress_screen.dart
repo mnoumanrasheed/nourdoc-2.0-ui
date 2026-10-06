@@ -107,14 +107,25 @@ class _RecordingInProgressScreenState extends State<RecordingInProgressScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(patient.name, style: AppTypography.cardTitle.copyWith(fontSize: 15)),
-                        const SizedBox(height: 2),
-                        Text('${patient.age}y ${patient.gender} • Follow-up Visit', style: AppTypography.caption),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            patient.name,
+                            style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            '${patient.age}y ${patient.gender} • Follow-up Visit',
+                            style: AppTypography.caption,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
+                    const SizedBox(width: 8),
                     CareSettingBadge(setting: CareSetting.opd, compact: true),
                   ],
                 ),

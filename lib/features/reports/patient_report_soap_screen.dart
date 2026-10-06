@@ -59,7 +59,14 @@ class PatientReportSoapScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('${c.patientName} (${c.id})', style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                  Flexible(
+                    child: Text(
+                      '${c.patientName} (${c.id})',
+                      style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
                   Text(c.dateTime, style: AppTypography.caption),
                 ],
               ),

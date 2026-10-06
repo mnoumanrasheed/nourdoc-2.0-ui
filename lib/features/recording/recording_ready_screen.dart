@@ -87,11 +87,15 @@ class RecordingReadyScreen extends StatelessWidget {
                   children: [
                     const Icon(Icons.lock_outline, size: 14, color: AppColors.deepJade),
                     const SizedBox(width: 6),
-                    Text(
-                      'HIPAA & Clinical Confidentiality Active',
-                      style: AppTypography.caption.copyWith(
-                        color: AppColors.deepJade,
-                        fontWeight: FontWeight.w600,
+                    Flexible(
+                      child: Text(
+                        'HIPAA & Clinical Confidentiality Active',
+                        style: AppTypography.caption.copyWith(
+                          color: AppColors.deepJade,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],

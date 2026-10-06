@@ -90,20 +90,20 @@ void main() {
       // 4. Validate Recording & Review
       await tester.pumpWidget(const MaterialApp(home: RecordingReadyScreen()));
       await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Ambient Listening Ready'), findsOneWidget);
+      expect(find.text('Ready to Record Encounter'), findsOneWidget);
 
       await tester.pumpWidget(const MaterialApp(home: RecordingInProgressScreen()));
       await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Active Clinical Listening'), findsOneWidget);
+      expect(find.text('Clinical Encounter'), findsOneWidget);
 
       await tester.pumpWidget(const MaterialApp(home: RecordingPausedScreen()));
       await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Encounter Paused'), findsOneWidget);
+      expect(find.text('Recording Paused'), findsOneWidget);
 
       // 5. Validate AI Processing
       await tester.pumpWidget(const MaterialApp(home: AiProcessingScreen()));
       await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Processing Clinical Encounter'), findsOneWidget);
+      expect(find.text('Clinical Intelligence Engine'), findsOneWidget);
 
       // 6. Validate Clinical Documentation
       await tester.pumpWidget(const MaterialApp(home: PatientReportOverviewScreen()));
@@ -116,7 +116,7 @@ void main() {
 
       await tester.pumpWidget(const MaterialApp(home: PatientReportCodingScreen()));
       await tester.pumpAndSettle();
-      expect(find.text('ICD-10 & CPT Billing Codes'), findsOneWidget);
+      expect(find.text('Medical Coding (ICD-10 & CPT)'), findsOneWidget);
 
       await tester.pumpWidget(const MaterialApp(home: ConsultationDetailScreen()));
       await tester.pumpAndSettle();

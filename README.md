@@ -1,336 +1,328 @@
-# NourDoc 2.0 — Intelligent Clinical Workspace
+# NourDoc 2.0
 
-**Flutter mobile UI | Clinical workflow demonstration | Mock-data prototype**
+**Flutter Mobile Application · Clinical Workspace UI**
 
-NourDoc 2.0 is a Flutter-based interface for an intelligent clinical workspace. This repository demonstrates a clinician-facing journey from onboarding and patient selection to encounter recording, AI-processing screens, structured clinical reports, risk review, and subscription/billing screens.
+NourDoc 2.0 is a Flutter-based mobile interface designed to demonstrate a connected clinical workflow—from clinician onboarding and patient management to consultations, clinical documentation, report review, and account administration.
 
-> **Project status:** This repository implements the **frontend UI and local demonstration flows**. It is **not a production clinical system**. Patient details, reports, recording/processing states, sign-in, and payment flows shown here are mock or simulated. There is no connected authentication service, clinical AI backend, patient database, live audio-capture integration, or payment processing integration in this project.
+The project uses a feature-organized codebase, reusable UI components, and a centralized design system to support consistent interfaces and future backend integration.
 
-![NourDoc UI design preview](figma_thumbnail_1280.png)
+> **Development status:** Frontend UI prototype. The repository uses local mock data and simulated interactions. Authentication, clinical AI processing, audio recording, patient-record services, and payment gateways are not connected to production backends.
 
-## Contents
+## Table of Contents
 
-- [Technology stack](#technology-stack)
-- [Interface modules](#interface-modules)
-- [Application flow](#application-flow)
-- [Repository structure](#repository-structure)
-- [Getting started](#getting-started)
-- [Testing and quality checks](#testing-and-quality-checks)
-- [Build an Android APK](#build-an-android-apk)
-- [Design system](#design-system)
-- [Mock data and future integrations](#mock-data-and-future-integrations)
-- [Design references](#design-references)
+- [Overview](#overview)
+- [Technology Stack](#technology-stack)
+- [Application Modules](#application-modules)
+- [User Journey](#user-journey)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Testing](#testing)
+- [Android Build](#android-build)
+- [Design System](#design-system)
+- [Implementation Status](#implementation-status)
+- [Development Notes](#development-notes)
+- [References](#references)
 
-## Technology stack
+## Overview
 
-| Area | Technology / configuration |
+The application brings several clinician-facing experiences into a single mobile UI. Its current implementation includes **52 registered screen destinations** and a shared five-item navigation shell.
+
+The codebase is organized around the following objectives:
+
+- **Workflow clarity:** Present patient, encounter, and consultation activities in a coherent sequence.
+- **Modular implementation:** Group screens by feature so individual workflows can be maintained and extended.
+- **Visual consistency:** Reuse theme tokens and shared components across the application.
+- **Integration readiness:** Separate demonstration data from UI structure, providing a foundation for introducing backend services in subsequent development.
+
+## Technology Stack
+
+| Component | Technology |
 | --- | --- |
-| App framework | Flutter (Dart) |
-| Dart SDK constraint | `^3.8.1` (see `pubspec.yaml`) |
-| UI system | Material 3 with custom NourDoc styling |
-| Typography | Google Fonts / Inter (`google_fonts: ^6.3.2`) |
-| Localization/formatting package | `intl: ^0.20.2` |
-| Icons | Material and Cupertino icons (`cupertino_icons: ^1.0.8`) |
-| Navigation | Flutter `MaterialApp` named routes and a custom bottom-navigation shell |
-| Demo data | In-repository Dart mock models and mock records |
-| Testing | `flutter_test` and `flutter_lints` |
+| Application framework | Flutter / Dart |
+| Dart SDK constraint | `^3.8.1` |
+| UI foundation | Material 3 with custom theming |
+| Typography | Inter via `google_fonts: ^6.3.2` |
+| Formatting | `intl: ^0.20.2` |
+| Icons | Material and `cupertino_icons: ^1.0.8` |
+| Navigation | Named routes, `MaterialApp`, and a custom bottom-navigation shell |
+| Demonstration data | In-repository Dart mock models and records |
+| Quality tooling | `flutter_test` and `flutter_lints` |
 
-The repository contains Flutter runner folders for Android, iOS, web, Windows, macOS, and Linux. The **experience documented here is primarily a mobile application UI**, not a separate website or web backend.
+The repository includes Flutter platform runner directories for Android, iOS, web, Windows, macOS, and Linux. The interface is primarily designed for mobile screen sizes.
 
-## Interface modules
+## Application Modules
 
-The app registers **52 screen destinations**, plus the reusable main-navigation shell, in `lib/app/app.dart` and `lib/app/routes/app_routes.dart`.
-
-| Module | Screens and demonstrated experiences |
+| Module | Included interfaces |
 | --- | --- |
-| **Onboarding & access** | Splash, onboarding, sign-in, verification, clinician registration; includes direct demo entry |
-| **Clinical workspace** | Dashboard/home, consultation listing, notifications, empty/error-state showcases |
-| **Patients** | Search, patient profile, clinical timeline, previous reports |
-| **New encounter** | Select patient, choose care setting, enter intake/vitals, review previous clinical context |
-| **Recording & processing** | Ready, in-progress, paused and submitted recording states, and AI-processing visualization |
-| **Consultation & reports** | Consultation details, report overview, SOAP, ICD-10/CPT coding, evidence, transcript mapping, clinical risks, risk details, transcript, final review |
-| **Subscription & billing** | Plan listing/details/comparison/upgrade, subscription and usage, payment-method selection, card/JazzCash/EasyPaisa/bank-transfer UI, payment status and invoice history |
-| **Account** | Profile, settings, notification settings, security |
+| **Onboarding and Access** | Splash, onboarding, sign-in, verification, and clinician registration |
+| **Clinical Workspace** | Dashboard, consultation list, notifications, and empty/error states |
+| **Patient Management** | Patient search, profile, medical timeline, and previous reports |
+| **Encounter Setup** | Patient selection, care setting, intake/vitals, and clinical context |
+| **Recording Workflow** | Ready, active, paused, submitted, and AI-processing states |
+| **Clinical Documentation** | Consultation details, report overview, SOAP, ICD-10/CPT views, evidence mapping, transcripts, risk review, and final review |
+| **Plans and Billing** | Plans, comparisons, subscriptions, usage, payment-method UI, payment states, and invoices |
+| **Account Settings** | Profile, general settings, notification preferences, and security |
 
-**Important:** A screen or button appearing in this UI does not imply a live service is connected. For example, the recording screen runs a display timer and waveform animation; sign-in and payment screens simulate progression rather than performing authentication or charging a card.
+These modules represent UI screens and demonstration flows; they do not imply that corresponding external services are already active.
 
-## Application flow
+## User Journey
 
-A typical **demo navigation** path is:
+The following diagram summarizes the major screens and navigation paths.
 
 ```text
-Splash → Onboarding → Sign In → Verification → Main Navigation
-                              └── Direct Demo Access → Main Navigation
+Splash
+  └── Onboarding
+       └── Sign In / Verification
+            └── Main Navigation
+                 ├── Home
+                 │    └── Clinical Workspace
+                 ├── Schedule
+                 │    └── Consultations
+                 ├── Encounter (+)
+                 │    └── Select Patient
+                 │         └── Care Setting
+                 │              └── Intake & Vitals
+                 │                   └── Clinical Context
+                 │                        └── Recording
+                 │                             └── Submission
+                 │                                  └── AI Processing UI
+                 │                                       └── Consultation / Report Review
+                 ├── Patients
+                 │    ├── Search & Profile
+                 │    ├── Timeline
+                 │    └── Previous Reports
+                 └── Profile
+                      ├── Settings
+                      ├── Subscription
+                      └── Billing
 
-Main Navigation
-├── Home (Clinical Workspace)
-├── Schedule (Consultations)
-├── Encounter (+) → Select Patient → Care Setting → Intake
-│                 → Clinical Context → Recording → Submission
-│                 → AI Processing → Consultation / Report Review
-├── Patients → Search → Profile / Timeline / Previous Reports
-└── Profile → Settings / Subscription / Billing
-
-Clinical Report
-├── Overview
-├── SOAP Documentation
-├── ICD-10 / CPT Coding
-├── Evidence and Transcript Mapping
-├── Clinical Risk Review
-├── Transcript
-└── Final Clinical Review
+Clinical Report Review
+  ├── Overview
+  ├── SOAP Documentation
+  ├── ICD-10 / CPT Coding
+  ├── Evidence & Transcript Mapping
+  ├── Clinical Risk Review
+  ├── Transcript
+  └── Final Clinical Review
 ```
 
-This is a **high-level guide** to available screen connections, not a guarantee that every demo path preserves state end to end.
+The main navigation contains **Home**, **Schedule**, **Encounter**, **Patients**, and **Profile**. The central Encounter action begins patient selection; the remaining tabs use an `IndexedStack` to manage views.
 
-The navigation shell displays **Home**, **Schedule**, **Encounter**, **Patients**, and **Profile**. The center Encounter action opens patient selection. The other four destinations are managed by an `IndexedStack`.
+The flow above is a conceptual overview of available navigation rather than a guarantee that all demo screens persist information end to end.
 
-## Repository structure
+## Project Structure
 
-The following structure is based on screen imports, routes, and files verified in the repository. Screen filenames are shown to make future maintenance and API integration easier.
+The following tree highlights the principal source directories, feature modules, and representative screens in the repository.
 
 ```text
 nourdoc-2.0-ui/
-├── android/                         # Android Flutter host project
-├── ios/                             # iOS Flutter host project
-├── linux/                           # Linux Flutter host project
-├── macos/                           # macOS Flutter host project
-├── web/                             # Flutter web runner
-├── windows/                         # Windows Flutter host project
+├── android/                           # Android runner
+├── ios/                               # iOS runner
+├── linux/                             # Linux runner
+├── macos/                             # macOS runner
+├── web/                               # Web runner
+├── windows/                           # Windows runner
 ├── assets/
-│   └── images/                      # Registered app image assets
+│   └── images/                        # Application image assets
 ├── lib/
-│   ├── main.dart                    # Flutter entry point; portrait orientations
+│   ├── main.dart                      # Application entry point
 │   ├── app/
-│   │   ├── app.dart                 # MaterialApp + screen route resolution
+│   │   ├── app.dart                   # App configuration and route handling
 │   │   ├── routes/
-│   │   │   └── app_routes.dart      # Named route constants
+│   │   │   └── app_routes.dart        # Named route definitions
 │   │   └── navigation/
-│   │       └── main_nav_shell.dart  # Bottom navigation / IndexedStack
+│   │       └── main_nav_shell.dart    # Bottom navigation shell
 │   ├── core/
 │   │   └── theme/
-│   │       ├── app_colors.dart      # Brand and semantic colors
-│   │       ├── app_typography.dart  # Inter text styles
-│   │       ├── app_spacing.dart     # Consistent spacing tokens
-│   │       ├── app_radius.dart      # Border-radius tokens
-│   │       ├── app_shadows.dart     # Reusable shadow presets
-│   │       └── app_theme.dart       # Main Flutter ThemeData
+│   │       ├── app_colors.dart        # Color palette
+│   │       ├── app_typography.dart    # Typography styles
+│   │       ├── app_spacing.dart       # Spacing tokens
+│   │       ├── app_radius.dart        # Radius tokens
+│   │       ├── app_shadows.dart       # Shadow styles
+│   │       └── app_theme.dart         # Theme configuration
 │   ├── models/
 │   │   └── mock/
-│   │       ├── mock_models.dart     # Patient, consultation, report etc. models
-│   │       └── mock_data.dart       # Static demonstration records
+│   │       ├── mock_models.dart       # Demo data models
+│   │       └── mock_data.dart         # Demo records
 │   ├── shared/
-│   │   └── widgets/                 # Reusable UI widgets; examples:
+│   │   └── widgets/
 │   │       ├── app_button.dart
 │   │       ├── app_text_field.dart
 │   │       ├── brand_logo.dart
 │   │       ├── clinical_badges.dart
 │   │       └── organic_waveform.dart
 │   └── features/
-│       ├── auth/
-│       │   ├── splash_screen.dart
-│       │   ├── onboarding_screen.dart
-│       │   ├── sign_in_screen.dart
-│       │   ├── verification_screen.dart
-│       │   └── doctor_registration_screen.dart
-│       ├── workspace/
-│       │   ├── workspace_screen.dart
-│       │   ├── notifications_screen.dart
-│       │   ├── empty_states_screen.dart
-│       │   └── error_states_screen.dart
-│       ├── patients/
-│       │   ├── patient_search_screen.dart
-│       │   ├── patient_profile_screen.dart
-│       │   ├── patient_timeline_screen.dart
-│       │   └── previous_reports_screen.dart
-│       ├── encounters/
-│       │   ├── select_patient_screen.dart
-│       │   ├── care_setting_screen.dart
-│       │   ├── patient_intake_screen.dart
-│       │   └── clinical_context_screen.dart
-│       ├── recording/
-│       │   ├── recording_ready_screen.dart
-│       │   ├── recording_in_progress_screen.dart
-│       │   ├── recording_paused_screen.dart
-│       │   └── consultation_submitted_screen.dart
-│       ├── processing/
-│       │   └── ai_processing_screen.dart
-│       ├── consultations/
-│       │   ├── consultations_screen.dart
-│       │   └── consultation_detail_screen.dart
-│       ├── reports/
-│       │   ├── patient_report_overview_screen.dart
-│       │   ├── patient_report_soap_screen.dart
-│       │   ├── patient_report_coding_screen.dart
-│       │   ├── patient_report_evidence_screen.dart
-│       │   ├── evidence_transcript_mapping_screen.dart
-│       │   ├── patient_report_transcript_screen.dart
-│       │   └── final_clinical_review_screen.dart
-│       ├── clinical_risk/
-│       │   ├── patient_report_risk_screen.dart
-│       │   └── risk_detail_screen.dart
-│       ├── subscription/
-│       │   ├── plans_screen.dart
-│       │   ├── plan_detail_screen.dart
-│       │   ├── compare_plans_screen.dart
-│       │   ├── upgrade_plan_screen.dart
-│       │   ├── my_subscription_screen.dart
-│       │   └── usage_limits_screen.dart
-│       ├── billing/
-│       │   ├── payment_method_screen.dart
-│       │   ├── stripe_payment_screen.dart
-│       │   ├── jazzcash_payment_screen.dart
-│       │   ├── easypaisa_payment_screen.dart
-│       │   ├── bank_transfer_screen.dart
-│       │   ├── payment_pending_screen.dart
-│       │   ├── payment_success_screen.dart
-│       │   ├── payment_failed_screen.dart
-│       │   └── invoice_history_screen.dart
-│       └── profile/
-│           ├── profile_screen.dart
-│           ├── settings_screen.dart
-│           ├── notification_settings_screen.dart
-│           └── security_screen.dart
+│       ├── auth/                       # Splash, onboarding, sign-in, registration
+│       ├── workspace/                  # Dashboard and UI states
+│       ├── patients/                   # Search, profile, timeline, reports
+│       ├── encounters/                 # Patient selection, intake, context
+│       ├── recording/                  # Recording and submission states
+│       ├── processing/                 # AI-processing interface
+│       ├── consultations/              # Consultation list and details
+│       ├── reports/                    # Documentation and report review
+│       ├── clinical_risk/              # Risk overview and details
+│       ├── subscription/               # Plans and subscription screens
+│       ├── billing/                    # Payment and invoice screens
+│       └── profile/                    # Profile, settings, security
 ├── test/
-│   └── widget_test.dart             # Smoke and multi-viewport widget tests
-├── analysis_options.yaml           # Lint rules
-├── pubspec.yaml                    # Dependencies, SDK and assets
-├── pubspec.lock                    # Resolved dependencies
-├── figma_thumbnail.png             # Design-preview asset
-├── figma_thumbnail_1280.png        # Design-preview asset
-├── figma_thumbnail_900.png         # Design-preview asset
+│   └── widget_test.dart               # Widget and viewport tests
+├── analysis_options.yaml             # Static analysis rules
+├── pubspec.yaml                      # Dependencies and assets
+├── pubspec.lock                      # Resolved dependency versions
 ├── NourDoc_New_Flutter_UI_From_Scratch_Master_Prompt.md
-│                                   # Original Flutter UI implementation brief
 └── README.md
 ```
 
-> The `shared/widgets/` list shows **verified examples**, not an exhaustive inventory of that folder. The layout above intentionally avoids suggesting unverified services, controllers, API layers or backend directories.
+**Directory responsibilities**
 
-### Key code entry points
+- `lib/app/` — Root application setup, route declarations, and navigation behavior.
+- `lib/core/theme/` — Reusable visual tokens and Flutter theme definitions.
+- `lib/features/` — Screens grouped by functional domain.
+- `lib/models/mock/` — Models and static data used by the prototype.
+- `lib/shared/widgets/` — UI components shared across feature screens.
+- `test/` — Automated widget tests.
 
-- **`lib/main.dart`** initializes Flutter, restricts orientation to portrait, and starts `NourDocApp`.
-- **`lib/app/app.dart`** configures the Material app, styling, splash screen, and route destinations.
-- **`lib/app/routes/app_routes.dart`** defines named route paths used by buttons and screen navigation.
-- **`lib/app/navigation/main_nav_shell.dart`** manages the five-item bottom bar, with Encounter as an action.
-- **`lib/core/theme/`** stores centralized UI design tokens and `ThemeData`.
-- **`lib/models/mock/`** defines local models and demonstration data.
-- **`lib/features/`** organizes UI screens by clinical or account function.
-- **`lib/shared/widgets/`** holds reusable view components.
+> The tree is a concise structural overview, not a complete listing of every file under each directory. It does not assume any API, repository, controller, or service layers that are not present in the source.
 
-## Getting started
+## Getting Started
 
 ### Prerequisites
 
-- Flutter SDK installed, with a Dart SDK compatible with the repository's `^3.8.1` constraint.
-- Android Studio or VS Code with Flutter/Dart tooling.
-- Android emulator or a USB-connected Android phone (or an appropriately configured iOS simulator on macOS).
+Install and configure:
 
-### Clone and run
+- Flutter SDK with a Dart version compatible with `^3.8.1`.
+- Android Studio or Visual Studio Code with Flutter/Dart extensions.
+- An Android emulator or connected Android device. For iOS, use a compatible macOS environment.
+
+### Installation
+
+**1. Clone the repository**
 
 ```bash
 git clone https://github.com/mnoumanrasheed/nourdoc-2.0-ui.git
 cd nourdoc-2.0-ui
+```
+
+**2. Verify the Flutter environment and install dependencies**
+
+```bash
 flutter doctor
 flutter pub get
+```
+
+**3. Run the application**
+
+```bash
 flutter devices
 flutter run
 ```
 
-To select a particular target:
+To select a device explicitly:
 
 ```bash
 flutter run -d <device_id>
 ```
 
-Replace `<device_id>` with an ID shown by `flutter devices`. The repository also includes a Flutter web runner; to try it in a browser with Chrome available, you may run `flutter run -d chrome`, although the UI is designed primarily for phone-sized screens.
+Replace `<device_id>` with an identifier returned by `flutter devices`.
 
-### Demo entry
+**Demo access:** The sign-in UI provides a **Direct Demo Access** option for entering the clinical workspace without connecting to an authentication service.
 
-From onboarding, open the sign-in screen and select **Direct Demo Access** to view the main clinical workspace without a live login service.
+## Testing
 
-## Testing and quality checks
+Run Flutter static analysis and the test suite:
 
 ```bash
 flutter analyze
 flutter test
 ```
 
-The committed `test/widget_test.dart` contains a splash/onboarding smoke test and widget tests configured for these mobile viewport dimensions:
+The repository includes a basic splash/onboarding smoke test and widget tests configured for several mobile viewports:
 
-- `375 × 812`
-- `390 × 844` (design baseline)
-- `393 × 852`
-- `430 × 932`
+| Viewport | Dimensions |
+| --- | --- |
+| Compact phone | `375 × 812` |
+| Primary design viewport | `390 × 844` |
+| Standard phone | `393 × 852` |
+| Large phone | `430 × 932` |
 
-These are **tests present in source code**. Their current passing status should be confirmed by running the commands above locally or in CI; the README does not assert that they were executed during this documentation review.
+These checks are defined in the repository. Execute them locally or in CI to verify the current build; their passing status is not asserted here.
 
-## Build an Android APK
+## Android Build
+
+Build a release APK:
 
 ```bash
 flutter pub get
 flutter build apk --release
 ```
 
-Flutter's default release APK output path is:
+Expected output:
 
 ```text
 build/app/outputs/flutter-apk/app-release.apk
 ```
 
-For a Play Store-oriented Android App Bundle, run:
+Build an Android App Bundle (AAB):
 
 ```bash
 flutter build appbundle --release
 ```
 
-Before public distribution, configure app identifiers, versioning, release signing, branding, policies, and production integrations as required. An APK built from this repository remains a **UI demonstration**, not a working medical-recording or payment application.
+Before public distribution, review application identifiers, release signing, versioning, and production integrations. The release artifact built from the current source remains a UI demonstration.
 
-## Design system
+## Design System
 
-The NourDoc interface uses a clinical visual language with shared design tokens:
+NourDoc uses a restrained clinical visual style with centralized color, typography, spacing, corner-radius, and shadow definitions.
 
-| Token | Value | Typical use |
+| Design token | Value | Usage |
 | --- | --- | --- |
-| Deep Jade | `#286252` | Primary brand/action color |
-| Fresh Jade | `#3F8F82` | Secondary brand accents |
-| Pale Jade | `#EAF4F1` | Light accent backgrounds |
-| Clinical Blue | `#477C9B` | Informational indicators |
-| Warm Amber | `#D9A441` | Processing / attention |
-| Rose | `#C85C5C` | Risk and error indicators |
+| Deep Jade | `#286252` | Primary brand elements and actions |
+| Fresh Jade | `#3F8F82` | Secondary accents |
+| Pale Jade | `#EAF4F1` | Subtle backgrounds |
+| Clinical Blue | `#477C9B` | Informational UI |
+| Warm Amber | `#D9A441` | Processing and attention states |
+| Rose | `#C85C5C` | Risk and error states |
 | Charcoal | `#24343B` | Primary text |
 
-Inter typography, standardized spacing, border radii, shadows, and theme configuration are maintained in `lib/core/theme/`. Most app images are registered via `assets/images/` in `pubspec.yaml`.
+Theme definitions reside in `lib/core/theme/`. Local application images are registered through `pubspec.yaml`.
 
-## Mock data and future integrations
+## Implementation Status
 
-### Currently demonstrated
+| Capability | Current status |
+| --- | --- |
+| UI screens and navigation | Implemented as a Flutter prototype |
+| Patient and consultation content | Local demonstration data |
+| Clinical reports and coding views | Demonstration interfaces |
+| Recording timer and visual waveform | Simulated UI states |
+| AI processing and generated outputs | Demonstration interfaces |
+| Sign-in and clinician verification | UI flow only |
+| Payment methods and billing | UI flow only; no live transactions |
+| Backend services and persistent records | Not integrated |
 
-- Local patient and consultation records, vitals, care settings, SOAP sections, code suggestions, evidence, risks, subscription plans, and invoices.
-- UI transitions for sign-in, recording stages, clinical processing, review, and payment outcomes.
-- Reusable controls and local screen navigation.
+The prototype is intended for interface review, workflow validation, and frontend development. It is **not suitable for clinical decision-making or processing real patient/payment information** in its current form.
 
-### Not connected in this repository
+## Development Notes
 
-- Production authentication and clinician verification.
-- Live audio capture, storage, speech-to-text, or AI clinical processing.
-- A patient-record database or medical-records API.
-- Live ICD-10/CPT coding or clinical risk inference.
-- Payment gateways (Stripe, JazzCash, EasyPaisa, bank verification) and real subscription management.
+For subsequent integration work, the existing feature organization can be retained while introducing backend clients, repositories, request/response models, and state management as appropriate to approved APIs.
 
-**Privacy and safety:** Do not enter real patient information or actual payment-card details into the demonstration UI. Any future production application handling clinical information requires appropriate security, data protection, clinical validation, auditability, and regulatory review.
+Recommended integration sequence:
 
-### Suggested integration approach (future work, not an existing feature)
+1. Define API contracts, authentication requirements, and secure data-handling rules.
+2. Replace relevant mock records with repository-backed data sources.
+3. Connect encounter and report workflows with appropriate loading/error states.
+4. Integrate audio, clinical processing, and billing only after corresponding services are available and validated.
+5. Add integration tests, auditability, and production security controls before deployment.
 
-Keep visual widgets under `features/` and `shared/widgets/`; introduce dedicated API clients, typed response models, repositories, and state management **when** backend endpoints and data contracts are defined. Replace `MockData` incrementally rather than connecting network calls directly inside every screen.
+No backend architecture or external integration described above should be assumed to exist in this repository today.
 
-## Design references
+## References
 
-- [Source code repository](https://github.com/mnoumanrasheed/nourdoc-2.0-ui)
-- [Flutter UI implementation brief](NourDoc_New_Flutter_UI_From_Scratch_Master_Prompt.md)
-- [Figma design reference named in the implementation brief](https://www.figma.com/make/VTbiUqbOfOwTP4G9HYNelw/NourDoc-Mobile-UI-UX-Design?t=pFaUl0ovGqMxlV4B-1)
+- **Repository:** [github.com/mnoumanrasheed/nourdoc-2.0-ui](https://github.com/mnoumanrasheed/nourdoc-2.0-ui)
+- **UI implementation brief:** [`NourDoc_New_Flutter_UI_From_Scratch_Master_Prompt.md`](NourDoc_New_Flutter_UI_From_Scratch_Master_Prompt.md)
+- **Design reference:** [NourDoc Figma project](https://www.figma.com/make/VTbiUqbOfOwTP4G9HYNelw/NourDoc-Mobile-UI-UX-Design?t=pFaUl0ovGqMxlV4B-1)
 
 ---
 
-**Repository:** `mnoumanrasheed/nourdoc-2.0-ui`  
-**Application package name in `pubspec.yaml`:** `nourdoc`  
-**Scope of this README:** Current GitHub `main` branch as reviewed on 11 October 2026.
+**Project:** NourDoc 2.0  
+**Package:** `nourdoc`  
+**Repository type:** Flutter UI prototype

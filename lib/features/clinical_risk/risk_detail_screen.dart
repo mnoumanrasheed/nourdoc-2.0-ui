@@ -3,10 +3,10 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/clinical_badges.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/clinical_badges.dart';
 
 class RiskDetailScreen extends StatefulWidget {
   final MockRiskSignal? signal;
@@ -55,7 +55,10 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: AppRadius.mdBorder,
-                  border: Border.all(color: _signal.severityColor.withOpacity(0.4), width: 1.5),
+                  border: Border.all(
+                    color: _signal.severityColor.withOpacity(0.4),
+                    width: 1.5,
+                  ),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,12 +66,21 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(_signal.severity, style: AppTypography.metadata.copyWith(color: _signal.severityColor, fontWeight: FontWeight.w700)),
+                        Text(
+                          _signal.severity,
+                          style: AppTypography.metadata.copyWith(
+                            color: _signal.severityColor,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         ConfidenceBadge(confidence: _signal.confidence),
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Text(_signal.title, style: AppTypography.cardTitle.copyWith(fontSize: 17)),
+                    Text(
+                      _signal.title,
+                      style: AppTypography.cardTitle.copyWith(fontSize: 17),
+                    ),
                     const SizedBox(height: 8),
                     Text(_signal.description, style: AppTypography.body),
                   ],
@@ -87,15 +99,30 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Clinical Rationale & Algorithmic Trigger', style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                    Text(
+                      'Clinical Rationale & Algorithmic Trigger',
+                      style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                    ),
                     const SizedBox(height: 8),
-                    Text(_signal.whyFlagged, style: AppTypography.body.copyWith(color: AppColors.charcoal)),
+                    Text(
+                      _signal.whyFlagged,
+                      style: AppTypography.body.copyWith(
+                        color: AppColors.charcoal,
+                      ),
+                    ),
                     const SizedBox(height: 12),
                     Row(
                       children: [
-                        const Icon(Icons.access_time, size: 14, color: AppColors.slate),
+                        const Icon(
+                          Icons.access_time,
+                          size: 14,
+                          color: AppColors.slate,
+                        ),
                         const SizedBox(width: 4),
-                        Text('Captured in dialogue at ${_signal.timestamp}', style: AppTypography.caption),
+                        Text(
+                          'Captured in dialogue at ${_signal.timestamp}',
+                          style: AppTypography.caption,
+                        ),
                       ],
                     ),
                   ],
@@ -114,15 +141,21 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Add Clinician Counter-Note', style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                    Text(
+                      'Add Clinician Counter-Note',
+                      style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                    ),
                     const SizedBox(height: 8),
                     TextFormField(
                       controller: _noteController,
                       maxLines: 3,
                       decoration: InputDecoration(
-                        hintText: 'Enter clinical rationale for override or follow-up plan...',
+                        hintText:
+                            'Enter clinical rationale for override or follow-up plan...',
                         fillColor: AppColors.clinicalMist,
-                        border: OutlineInputBorder(borderRadius: AppRadius.smBorder),
+                        border: OutlineInputBorder(
+                          borderRadius: AppRadius.smBorder,
+                        ),
                       ),
                     ),
                   ],
@@ -137,7 +170,11 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
                     child: OutlinedButton(
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Signal dismissed with clinical justification')),
+                          const SnackBar(
+                            content: Text(
+                              'Signal dismissed with clinical justification',
+                            ),
+                          ),
                         );
                         Navigator.of(context).pop();
                       },
@@ -145,7 +182,9 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
                         foregroundColor: AppColors.rose,
                         side: const BorderSide(color: AppColors.rose),
                         minimumSize: const Size.fromHeight(48),
-                        shape: RoundedRectangleBorder(borderRadius: AppRadius.mdBorder),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: AppRadius.mdBorder,
+                        ),
                       ),
                       child: const Text('Dismiss Signal'),
                     ),
@@ -156,7 +195,11 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
                       label: 'Confirm & Note',
                       onPressed: () {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Risk item incorporated into clinical plan')),
+                          const SnackBar(
+                            content: Text(
+                              'Risk item incorporated into clinical plan',
+                            ),
+                          ),
                         );
                         Navigator.of(context).pop();
                       },
@@ -172,4 +215,3 @@ class _RiskDetailScreenState extends State<RiskDetailScreen> {
     );
   }
 }
-

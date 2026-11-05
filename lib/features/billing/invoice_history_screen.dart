@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
+import '../../core/models/mock/mock_data.dart';
 
 class InvoiceHistoryScreen extends StatelessWidget {
   const InvoiceHistoryScreen({super.key});
@@ -42,43 +42,74 @@ class InvoiceHistoryScreen extends StatelessWidget {
                       color: AppColors.paleJade,
                       borderRadius: AppRadius.smBorder,
                     ),
-                    child: const Icon(Icons.receipt_long_outlined, color: AppColors.deepJade, size: 22),
+                    child: const Icon(
+                      Icons.receipt_long_outlined,
+                      color: AppColors.deepJade,
+                      size: 22,
+                    ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(inv.id, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                        Text(
+                          inv.id,
+                          style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                        ),
                         const SizedBox(height: 2),
-                        Text('${inv.date} • ${inv.method}', style: AppTypography.caption),
+                        Text(
+                          '${inv.date} • ${inv.method}',
+                          style: AppTypography.caption,
+                        ),
                       ],
                     ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(inv.amount, style: AppTypography.cardTitle.copyWith(fontSize: 15, fontWeight: FontWeight.bold)),
+                      Text(
+                        inv.amount,
+                        style: AppTypography.cardTitle.copyWith(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       const SizedBox(height: 2),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 2,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.paleJade,
                           borderRadius: AppRadius.xsBorder,
                         ),
                         child: Text(
                           inv.status,
-                          style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.bold, fontSize: 10),
+                          style: AppTypography.caption.copyWith(
+                            color: AppColors.deepJade,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    icon: const Icon(Icons.download_outlined, size: 20, color: AppColors.slate),
+                    icon: const Icon(
+                      Icons.download_outlined,
+                      size: 20,
+                      color: AppColors.slate,
+                    ),
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Downloading invoice receipt ${inv.id}...')),
+                        SnackBar(
+                          content: Text(
+                            'Downloading invoice receipt ${inv.id}...',
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -91,4 +122,3 @@ class InvoiceHistoryScreen extends StatelessWidget {
     );
   }
 }
-

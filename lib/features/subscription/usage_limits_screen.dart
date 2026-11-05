@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class UsageLimitsScreen extends StatelessWidget {
@@ -27,7 +27,10 @@ class UsageLimitsScreen extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    Text('Workspace Resource Consumption', style: AppTypography.sectionTitle),
+                    Text(
+                      'Workspace Resource Consumption',
+                      style: AppTypography.sectionTitle,
+                    ),
                     const SizedBox(height: 6),
                     Text(
                       'Track ambient listening minutes, clinical storage, and ICD coding utilization.',
@@ -80,12 +83,19 @@ class UsageLimitsScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.check_circle_outline, color: AppColors.deepJade, size: 22),
+                          const Icon(
+                            Icons.check_circle_outline,
+                            color: AppColors.deepJade,
+                            size: 22,
+                          ),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               'Your workspace is running well within safe clinical operating capacity.',
-                              style: AppTypography.caption.copyWith(color: AppColors.charcoal, fontWeight: FontWeight.w600),
+                              style: AppTypography.caption.copyWith(
+                                color: AppColors.charcoal,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ],
@@ -130,8 +140,17 @@ class UsageLimitsScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(title, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
-              Text(current, style: AppTypography.metadata.copyWith(fontWeight: FontWeight.bold, color: color)),
+              Text(
+                title,
+                style: AppTypography.cardTitle.copyWith(fontSize: 14),
+              ),
+              Text(
+                current,
+                style: AppTypography.metadata.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 4),
@@ -151,4 +170,3 @@ class UsageLimitsScreen extends StatelessWidget {
     );
   }
 }
-

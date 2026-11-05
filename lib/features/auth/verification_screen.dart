@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class VerificationScreen extends StatefulWidget {
@@ -14,8 +14,10 @@ class VerificationScreen extends StatefulWidget {
 }
 
 class _VerificationScreenState extends State<VerificationScreen> {
-  final List<TextEditingController> _controllers =
-      List.generate(6, (i) => TextEditingController(text: '${i + 1}'));
+  final List<TextEditingController> _controllers = List.generate(
+    6,
+    (i) => TextEditingController(text: '${i + 1}'),
+  );
   bool _isLoading = false;
 
   @override
@@ -31,10 +33,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
     Future.delayed(const Duration(milliseconds: 600), () {
       if (mounted) {
         setState(() => _isLoading = false);
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          AppRoutes.mainNav,
-          (route) => false,
-        );
+        Navigator.of(
+          context,
+        ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (route) => false);
       }
     });
   }
@@ -51,7 +52,9 @@ class _VerificationScreenState extends State<VerificationScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.screenHorizontal,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -105,7 +108,10 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: AppRadius.smBorder,
-                          borderSide: const BorderSide(color: AppColors.deepJade, width: 2),
+                          borderSide: const BorderSide(
+                            color: AppColors.deepJade,
+                            width: 2,
+                          ),
                         ),
                       ),
                     ),
@@ -138,4 +144,3 @@ class _VerificationScreenState extends State<VerificationScreen> {
     );
   }
 }
-

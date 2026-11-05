@@ -3,11 +3,11 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/clinical_badges.dart';
-import '../../shared/widgets/app_audio_player.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/clinical_badges.dart';
+import '../../core/widgets/app_audio_player.dart';
 import '../../app/routes/app_routes.dart';
 
 class PatientReportOverviewScreen extends StatefulWidget {
@@ -16,10 +16,12 @@ class PatientReportOverviewScreen extends StatefulWidget {
   const PatientReportOverviewScreen({super.key, this.consultation});
 
   @override
-  State<PatientReportOverviewScreen> createState() => _PatientReportOverviewScreenState();
+  State<PatientReportOverviewScreen> createState() =>
+      _PatientReportOverviewScreenState();
 }
 
-class _PatientReportOverviewScreenState extends State<PatientReportOverviewScreen>
+class _PatientReportOverviewScreenState
+    extends State<PatientReportOverviewScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late MockConsultation _consultation;
@@ -85,7 +87,9 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
                           children: [
                             Text(
                               _consultation.patientName,
-                              style: AppTypography.cardTitle.copyWith(fontSize: 17),
+                              style: AppTypography.cardTitle.copyWith(
+                                fontSize: 17,
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 2),
@@ -108,7 +112,11 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
                       Expanded(
                         child: Row(
                           children: [
-                            const Icon(Icons.schedule, size: 14, color: AppColors.slate),
+                            const Icon(
+                              Icons.schedule,
+                              size: 14,
+                              color: AppColors.slate,
+                            ),
                             const SizedBox(width: 4),
                             Flexible(
                               child: Text(
@@ -137,7 +145,9 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
                 indicatorColor: AppColors.deepJade,
                 labelColor: AppColors.deepJade,
                 unselectedLabelColor: AppColors.slate,
-                labelStyle: AppTypography.metadata.copyWith(fontWeight: FontWeight.w700),
+                labelStyle: AppTypography.metadata.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
                 unselectedLabelStyle: AppTypography.metadata,
                 tabs: const [
                   Tab(text: 'Overview'),
@@ -206,9 +216,15 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Primary Clinical Assessment', style: AppTypography.cardTitle.copyWith(fontSize: 15)),
+              Text(
+                'Primary Clinical Assessment',
+                style: AppTypography.cardTitle.copyWith(fontSize: 15),
+              ),
               const SizedBox(height: 8),
-              Text(_consultation.primaryDiagnosis, style: AppTypography.bodyMedium),
+              Text(
+                _consultation.primaryDiagnosis,
+                style: AppTypography.bodyMedium,
+              ),
               const SizedBox(height: 12),
               Container(
                 padding: const EdgeInsets.all(12),
@@ -299,7 +315,13 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
                 ),
               ),
               const SizedBox(width: 8),
-              Text(title, style: AppTypography.cardTitle.copyWith(fontSize: 15, color: accentColor)),
+              Text(
+                title,
+                style: AppTypography.cardTitle.copyWith(
+                  fontSize: 15,
+                  color: accentColor,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 10),
@@ -333,7 +355,10 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
                 ),
                 child: Text(
                   coding.code,
-                  style: AppTypography.metadata.copyWith(fontWeight: FontWeight.w700, color: AppColors.deepJade),
+                  style: AppTypography.metadata.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.deepJade,
+                  ),
                 ),
               ),
               const SizedBox(width: 12),
@@ -341,15 +366,25 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(coding.description, style: AppTypography.bodyMedium.copyWith(fontSize: 13)),
+                    Text(
+                      coding.description,
+                      style: AppTypography.bodyMedium.copyWith(fontSize: 13),
+                    ),
                     const SizedBox(height: 2),
-                    Text('${coding.category} • ${(coding.confidence * 100).toInt()}% confidence', style: AppTypography.caption),
+                    Text(
+                      '${coding.category} • ${(coding.confidence * 100).toInt()}% confidence',
+                      style: AppTypography.caption,
+                    ),
                   ],
                 ),
               ),
               Icon(
-                coding.isConfirmed ? Icons.check_circle : Icons.check_circle_outline,
-                color: coding.isConfirmed ? AppColors.deepJade : AppColors.slateLight,
+                coding.isConfirmed
+                    ? Icons.check_circle
+                    : Icons.check_circle_outline,
+                color: coding.isConfirmed
+                    ? AppColors.deepJade
+                    : AppColors.slateLight,
                 size: 20,
               ),
             ],
@@ -379,14 +414,35 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(ev.type, style: AppTypography.caption.copyWith(fontWeight: FontWeight.w700, color: AppColors.deepJade)),
-                  Text(ev.timestamp, style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.w700)),
+                  Text(
+                    ev.type,
+                    style: AppTypography.caption.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.deepJade,
+                    ),
+                  ),
+                  Text(
+                    ev.timestamp,
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.deepJade,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 6),
-              Text(ev.text, style: AppTypography.body.copyWith(fontStyle: FontStyle.italic, fontSize: 13)),
+              Text(
+                ev.text,
+                style: AppTypography.body.copyWith(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 13,
+                ),
+              ),
               const SizedBox(height: 6),
-              Text(ev.speaker, style: AppTypography.caption.copyWith(color: AppColors.slate)),
+              Text(
+                ev.speaker,
+                style: AppTypography.caption.copyWith(color: AppColors.slate),
+              ),
             ],
           ),
         );
@@ -406,24 +462,42 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: AppRadius.mdBorder,
-            border: Border.all(color: r.severityColor.withOpacity(0.4), width: 1.2),
+            border: Border.all(
+              color: r.severityColor.withOpacity(0.4),
+              width: 1.2,
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(Icons.warning_amber_rounded, size: 18, color: r.severityColor),
+                  Icon(
+                    Icons.warning_amber_rounded,
+                    size: 18,
+                    color: r.severityColor,
+                  ),
                   const SizedBox(width: 8),
                   Expanded(
-                    child: Text(r.title, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                    child: Text(
+                      r.title,
+                      style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: 6),
-              Text(r.description, style: AppTypography.body.copyWith(fontSize: 13)),
+              Text(
+                r.description,
+                style: AppTypography.body.copyWith(fontSize: 13),
+              ),
               const SizedBox(height: 8),
-              Text('Why Flagged: ${r.whyFlagged}', style: AppTypography.caption.copyWith(fontStyle: FontStyle.italic)),
+              Text(
+                'Why Flagged: ${r.whyFlagged}',
+                style: AppTypography.caption.copyWith(
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
             ],
           ),
         );
@@ -431,7 +505,12 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
     );
   }
 
-  Widget _buildSummaryCard(String title, String val, IconData icon, Color color) {
+  Widget _buildSummaryCard(
+    String title,
+    String val,
+    IconData icon,
+    Color color,
+  ) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -444,12 +523,22 @@ class _PatientReportOverviewScreenState extends State<PatientReportOverviewScree
         children: [
           Icon(icon, size: 18, color: color),
           const SizedBox(height: 8),
-          Text(val, style: AppTypography.cardTitle.copyWith(fontSize: 18, fontWeight: FontWeight.w700)),
+          Text(
+            val,
+            style: AppTypography.cardTitle.copyWith(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
           const SizedBox(height: 2),
-          Text(title, style: AppTypography.caption, maxLines: 1, overflow: TextOverflow.ellipsis),
+          Text(
+            title,
+            style: AppTypography.caption,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ],
       ),
     );
   }
 }
-

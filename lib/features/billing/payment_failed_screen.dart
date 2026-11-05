@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class PaymentFailedScreen extends StatelessWidget {
@@ -13,9 +13,7 @@ class PaymentFailedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -32,7 +30,10 @@ class PaymentFailedScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.roseLight,
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.rose.withOpacity(0.4), width: 2),
+                  border: Border.all(
+                    color: AppColors.rose.withOpacity(0.4),
+                    width: 2,
+                  ),
                 ),
                 child: const Icon(
                   Icons.error_outline_rounded,
@@ -62,7 +63,11 @@ class PaymentFailedScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.help_outline, color: AppColors.slate, size: 20),
+                    const Icon(
+                      Icons.help_outline,
+                      color: AppColors.slate,
+                      size: 20,
+                    ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
@@ -77,7 +82,9 @@ class PaymentFailedScreen extends StatelessWidget {
               AppButton(
                 label: 'Retry Payment',
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.paymentMethod);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.paymentMethod);
                 },
               ),
               const SizedBox(height: 12),
@@ -85,7 +92,9 @@ class PaymentFailedScreen extends StatelessWidget {
                 label: 'Return to Workspace',
                 variant: ButtonVariant.secondary,
                 onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
                 },
               ),
               const SizedBox(height: 12),
@@ -96,4 +105,3 @@ class PaymentFailedScreen extends StatelessWidget {
     );
   }
 }
-

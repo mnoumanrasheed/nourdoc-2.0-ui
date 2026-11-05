@@ -3,8 +3,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class ConsultationSubmittedScreen extends StatelessWidget {
@@ -22,7 +22,9 @@ class ConsultationSubmittedScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.close),
             onPressed: () {
-              Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+              Navigator.of(
+                context,
+              ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
             },
           ),
         ],
@@ -43,7 +45,10 @@ class ConsultationSubmittedScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.paleJade,
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.deepJade.withOpacity(0.3), width: 2),
+                  border: Border.all(
+                    color: AppColors.deepJade.withOpacity(0.3),
+                    width: 2,
+                  ),
                 ),
                 child: const Icon(
                   Icons.check_circle_rounded,
@@ -65,7 +70,10 @@ class ConsultationSubmittedScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.clinicalMist,
                   borderRadius: AppRadius.mdBorder,
@@ -90,7 +98,9 @@ class ConsultationSubmittedScreen extends StatelessWidget {
                 label: 'View AI Processing',
                 icon: Icons.auto_awesome,
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.aiProcessing);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.aiProcessing);
                 },
               ),
               const SizedBox(height: 12),
@@ -98,7 +108,9 @@ class ConsultationSubmittedScreen extends StatelessWidget {
                 label: 'Back to Workspace',
                 variant: ButtonVariant.secondary,
                 onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
                 },
               ),
               const SizedBox(height: 12),
@@ -109,4 +121,3 @@ class ConsultationSubmittedScreen extends StatelessWidget {
     );
   }
 }
-

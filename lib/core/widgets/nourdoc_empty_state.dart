@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_typography.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
 import 'app_button.dart';
 
 class NourDocEmptyState extends StatelessWidget {
@@ -34,7 +34,10 @@ class NourDocEmptyState extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.paleJade.withOpacity(0.5),
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.deepJade.withOpacity(0.2), width: 1.5),
+                border: Border.all(
+                  color: AppColors.deepJade.withOpacity(0.2),
+                  width: 1.5,
+                ),
               ),
               child: Icon(icon, size: 36, color: AppColors.deepJade),
             ),
@@ -48,7 +51,10 @@ class NourDocEmptyState extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: AppTypography.body.copyWith(color: AppColors.slate, fontSize: 13),
+              style: AppTypography.body.copyWith(
+                color: AppColors.slate,
+                fontSize: 13,
+              ),
             ),
             if (actionLabel != null && onAction != null) ...[
               const SizedBox(height: 24),
@@ -68,4 +74,3 @@ class NourDocEmptyState extends StatelessWidget {
     );
   }
 }
-

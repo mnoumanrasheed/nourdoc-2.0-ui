@@ -3,11 +3,11 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/clinical_badges.dart';
-import '../../shared/widgets/organic_waveform.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/clinical_badges.dart';
+import '../../core/widgets/organic_waveform.dart';
 import '../../app/routes/app_routes.dart';
 
 class RecordingReadyScreen extends StatelessWidget {
@@ -53,7 +53,9 @@ class RecordingReadyScreen extends StatelessWidget {
                         children: [
                           Text(
                             patient.name,
-                            style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 15,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 2),
@@ -88,7 +90,10 @@ class RecordingReadyScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.paleJade,
                   borderRadius: AppRadius.smBorder,
@@ -96,7 +101,11 @@ class RecordingReadyScreen extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.lock_outline, size: 14, color: AppColors.deepJade),
+                    const Icon(
+                      Icons.lock_outline,
+                      size: 14,
+                      color: AppColors.deepJade,
+                    ),
                     const SizedBox(width: 6),
                     Flexible(
                       child: Text(
@@ -119,13 +128,20 @@ class RecordingReadyScreen extends StatelessWidget {
                 label: 'Start Recording Encounter',
                 icon: Icons.fiber_manual_record,
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.recordingInProgress);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.recordingInProgress);
                 },
               ),
               const SizedBox(height: 12),
               TextButton(
                 onPressed: () => Navigator.of(context).maybePop(),
-                child: Text('Cancel Encounter', style: AppTypography.metadata.copyWith(color: AppColors.slate)),
+                child: Text(
+                  'Cancel Encounter',
+                  style: AppTypography.metadata.copyWith(
+                    color: AppColors.slate,
+                  ),
+                ),
               ),
               const SizedBox(height: 12),
             ],
@@ -135,4 +151,3 @@ class RecordingReadyScreen extends StatelessWidget {
     );
   }
 }
-

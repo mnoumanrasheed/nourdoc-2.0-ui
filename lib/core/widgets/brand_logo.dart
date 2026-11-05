@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/assets/app_assets.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_typography.dart';
+import '../assets/app_assets.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
 
 class NourDocLogo extends StatelessWidget {
   final double height;
@@ -73,4 +73,3 @@ class NourDocLogo extends StatelessWidget {
     );
   }
 }
-

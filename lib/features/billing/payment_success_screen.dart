@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class PaymentSuccessScreen extends StatelessWidget {
@@ -13,9 +13,7 @@ class PaymentSuccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -32,7 +30,10 @@ class PaymentSuccessScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.paleJade,
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.deepJade.withOpacity(0.3), width: 2),
+                  border: Border.all(
+                    color: AppColors.deepJade.withOpacity(0.3),
+                    width: 2,
+                  ),
                 ),
                 child: const Icon(
                   Icons.check_circle_rounded,
@@ -66,7 +67,12 @@ class PaymentSuccessScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Plan', style: AppTypography.caption),
-                        Text('Professional Tier', style: AppTypography.metadata.copyWith(fontWeight: FontWeight.bold)),
+                        Text(
+                          'Professional Tier',
+                          style: AppTypography.metadata.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                     const Divider(height: 16),
@@ -74,7 +80,12 @@ class PaymentSuccessScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Billing Amount', style: AppTypography.caption),
-                        Text('\$99.00 USD / Month', style: AppTypography.metadata.copyWith(fontWeight: FontWeight.bold)),
+                        Text(
+                          '\$99.00 USD / Month',
+                          style: AppTypography.metadata.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                     const Divider(height: 16),
@@ -82,7 +93,13 @@ class PaymentSuccessScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text('Receipt Number', style: AppTypography.caption),
-                        Text('REC-892104-ND', style: AppTypography.metadata.copyWith(fontWeight: FontWeight.bold, color: AppColors.deepJade)),
+                        Text(
+                          'REC-892104-ND',
+                          style: AppTypography.metadata.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.deepJade,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -93,7 +110,9 @@ class PaymentSuccessScreen extends StatelessWidget {
                 label: 'Go to Clinical Workspace',
                 icon: Icons.dashboard_outlined,
                 onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
                 },
               ),
               const SizedBox(height: 12),
@@ -103,10 +122,18 @@ class PaymentSuccessScreen extends StatelessWidget {
                 },
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size.fromHeight(48),
-                  shape: RoundedRectangleBorder(borderRadius: AppRadius.mdBorder),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: AppRadius.mdBorder,
+                  ),
                   side: const BorderSide(color: AppColors.border),
                 ),
-                child: const Text('View Invoice Details', style: TextStyle(color: AppColors.charcoal, fontWeight: FontWeight.bold)),
+                child: const Text(
+                  'View Invoice Details',
+                  style: TextStyle(
+                    color: AppColors.charcoal,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               const SizedBox(height: 12),
             ],
@@ -116,4 +143,3 @@ class PaymentSuccessScreen extends StatelessWidget {
     );
   }
 }
-

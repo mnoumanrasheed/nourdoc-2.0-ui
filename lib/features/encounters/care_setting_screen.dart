@@ -3,9 +3,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class CareSettingScreen extends StatefulWidget {
@@ -59,7 +59,9 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
                       backgroundColor: AppColors.paleJade,
                       child: Text(
                         _patient.name.substring(0, 1),
-                        style: AppTypography.cardTitle.copyWith(color: AppColors.deepJade),
+                        style: AppTypography.cardTitle.copyWith(
+                          color: AppColors.deepJade,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -67,8 +69,16 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(_patient.name, style: AppTypography.cardTitle.copyWith(fontSize: 15)),
-                          Text('${_patient.mrn} • ${_patient.age}y ${_patient.gender}', style: AppTypography.caption),
+                          Text(
+                            _patient.name,
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            '${_patient.mrn} • ${_patient.age}y ${_patient.gender}',
+                            style: AppTypography.caption,
+                          ),
                         ],
                       ),
                     ),
@@ -95,7 +105,8 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
                     _buildOption(
                       setting: CareSetting.opd,
                       title: 'OPD (Outpatient Department)',
-                      description: 'Ambulatory clinic, scheduled follow-ups, and outpatient evaluations.',
+                      description:
+                          'Ambulatory clinic, scheduled follow-ups, and outpatient evaluations.',
                       color: AppColors.opd,
                       icon: Icons.local_hospital_outlined,
                     ),
@@ -103,7 +114,8 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
                     _buildOption(
                       setting: CareSetting.emergency,
                       title: 'Emergency (ER / Trauma)',
-                      description: 'Urgent triage, acute stabilization, rapid resuscitation workflows.',
+                      description:
+                          'Urgent triage, acute stabilization, rapid resuscitation workflows.',
                       color: AppColors.emergency,
                       icon: Icons.emergency_outlined,
                     ),
@@ -111,7 +123,8 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
                     _buildOption(
                       setting: CareSetting.ipd,
                       title: 'IPD (Inpatient Department)',
-                      description: 'Ward rounds, admitted patient tracking, multi-day progress notes.',
+                      description:
+                          'Ward rounds, admitted patient tracking, multi-day progress notes.',
                       color: AppColors.ipd,
                       icon: Icons.hotel_outlined,
                     ),
@@ -119,7 +132,8 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
                     _buildOption(
                       setting: CareSetting.ot,
                       title: 'OT (Operating Theatre)',
-                      description: 'Intraoperative notes, surgical safety checklist, pre/post-op records.',
+                      description:
+                          'Intraoperative notes, surgical safety checklist, pre/post-op records.',
                       color: AppColors.ot,
                       icon: Icons.medical_services_outlined,
                     ),
@@ -197,7 +211,9 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
                       const SizedBox(height: 4),
                       Text(
                         description,
-                        style: AppTypography.caption.copyWith(color: AppColors.slate),
+                        style: AppTypography.caption.copyWith(
+                          color: AppColors.slate,
+                        ),
                       ),
                     ],
                   ),
@@ -218,4 +234,3 @@ class _CareSettingScreenState extends State<CareSettingScreen> {
     );
   }
 }
-

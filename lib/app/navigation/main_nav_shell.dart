@@ -27,10 +27,7 @@ class _MainNavShellState extends State<MainNavShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _screens,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -86,13 +83,19 @@ class _MainNavShellState extends State<MainNavShell> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                color: AppColors.deepJade.withValues(alpha: 0.3),
+                                color: AppColors.deepJade.withValues(
+                                  alpha: 0.3,
+                                ),
                                 offset: const Offset(0, 3),
                                 blurRadius: 8,
                               ),
                             ],
                           ),
-                          child: const Icon(Icons.add, color: Colors.white, size: 20),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 20,
+                          ),
                         ),
                         const SizedBox(height: 3),
                         Text(

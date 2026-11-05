@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_shadows.dart';
-import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_models.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_shadows.dart';
+import '../theme/app_typography.dart';
+import '../models/mock/mock_models.dart';
 import 'clinical_badges.dart';
 
 class RiskCard extends StatelessWidget {
@@ -26,7 +26,10 @@ class RiskCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: AppRadius.mdBorder,
-        border: Border.all(color: signal.severityColor.withOpacity(0.4), width: 1.2),
+        border: Border.all(
+          color: signal.severityColor.withOpacity(0.4),
+          width: 1.2,
+        ),
         boxShadow: AppShadows.subtle,
       ),
       child: Material(
@@ -61,7 +64,9 @@ class RiskCard extends StatelessWidget {
                         children: [
                           Text(
                             signal.title,
-                            style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 15,
+                            ),
                           ),
                           const SizedBox(height: 2),
                           Row(
@@ -80,13 +85,20 @@ class RiskCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Icon(Icons.chevron_right, color: AppColors.slateLight, size: 20),
+                    const Icon(
+                      Icons.chevron_right,
+                      color: AppColors.slateLight,
+                      size: 20,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 10),
                 Text(
                   signal.description,
-                  style: AppTypography.body.copyWith(fontSize: 13, color: AppColors.charcoal),
+                  style: AppTypography.body.copyWith(
+                    fontSize: 13,
+                    color: AppColors.charcoal,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Container(
@@ -97,7 +109,11 @@ class RiskCard extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.info_outline, size: 14, color: AppColors.slate),
+                      const Icon(
+                        Icons.info_outline,
+                        size: 14,
+                        color: AppColors.slate,
+                      ),
                       const SizedBox(width: 6),
                       Expanded(
                         child: Text(
@@ -125,18 +141,33 @@ class RiskCard extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: onDismiss,
-                        child: Text('Dismiss', style: AppTypography.metadata.copyWith(color: AppColors.slate)),
+                        child: Text(
+                          'Dismiss',
+                          style: AppTypography.metadata.copyWith(
+                            color: AppColors.slate,
+                          ),
+                        ),
                       ),
                       const SizedBox(width: 8),
                       ElevatedButton(
                         onPressed: onConfirm,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: signal.severityColor,
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 8,
+                          ),
                           minimumSize: const Size(0, 36),
-                          shape: RoundedRectangleBorder(borderRadius: AppRadius.smBorder),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: AppRadius.smBorder,
+                          ),
                         ),
-                        child: Text('Acknowledge', style: AppTypography.metadata.copyWith(color: Colors.white)),
+                        child: Text(
+                          'Acknowledge',
+                          style: AppTypography.metadata.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -149,4 +180,3 @@ class RiskCard extends StatelessWidget {
     );
   }
 }
-

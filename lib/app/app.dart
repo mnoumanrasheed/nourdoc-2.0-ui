@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../core/theme/app_theme.dart';
-import '../models/mock/mock_models.dart';
+import '../core/models/mock/mock_models.dart';
 import 'routes/app_routes.dart';
 import 'navigation/main_nav_shell.dart';
 
 // Auth
-import '../features/auth/splash_screen.dart';
+import '../features/splash/splash_screen.dart';
 import '../features/auth/onboarding_screen.dart';
 import '../features/auth/sign_in_screen.dart';
 import '../features/auth/verification_screen.dart';
@@ -91,17 +91,25 @@ class NourDocApp extends StatelessWidget {
           case AppRoutes.signIn:
             return MaterialPageRoute(builder: (_) => const SignInScreen());
           case AppRoutes.verification:
-            return MaterialPageRoute(builder: (_) => const VerificationScreen());
+            return MaterialPageRoute(
+              builder: (_) => const VerificationScreen(),
+            );
           case AppRoutes.doctorRegistration:
-            return MaterialPageRoute(builder: (_) => const DoctorRegistrationScreen());
+            return MaterialPageRoute(
+              builder: (_) => const DoctorRegistrationScreen(),
+            );
           case AppRoutes.mainNav:
             return MaterialPageRoute(builder: (_) => const MainNavShell());
           case AppRoutes.workspace:
             return MaterialPageRoute(builder: (_) => const WorkspaceScreen());
           case AppRoutes.notifications:
-            return MaterialPageRoute(builder: (_) => const NotificationsScreen());
+            return MaterialPageRoute(
+              builder: (_) => const NotificationsScreen(),
+            );
           case AppRoutes.patientSearch:
-            return MaterialPageRoute(builder: (_) => const PatientSearchScreen());
+            return MaterialPageRoute(
+              builder: (_) => const PatientSearchScreen(),
+            );
           case AppRoutes.patientProfile:
             return MaterialPageRoute(
               builder: (_) => PatientProfileScreen(
@@ -115,14 +123,17 @@ class NourDocApp extends StatelessWidget {
               ),
             );
           case AppRoutes.previousReports:
-            return MaterialPageRoute(builder: (_) => const PreviousReportsScreen());
+            return MaterialPageRoute(
+              builder: (_) => const PreviousReportsScreen(),
+            );
           case AppRoutes.selectPatient:
-            return MaterialPageRoute(builder: (_) => const SelectPatientScreen());
+            return MaterialPageRoute(
+              builder: (_) => const SelectPatientScreen(),
+            );
           case AppRoutes.careSetting:
             return MaterialPageRoute(
-              builder: (_) => CareSettingScreen(
-                patient: args is MockPatient ? args : null,
-              ),
+              builder: (_) =>
+                  CareSettingScreen(patient: args is MockPatient ? args : null),
             );
           case AppRoutes.patientIntake:
             return MaterialPageRoute(
@@ -131,19 +142,33 @@ class NourDocApp extends StatelessWidget {
               ),
             );
           case AppRoutes.clinicalContext:
-            return MaterialPageRoute(builder: (_) => const ClinicalContextScreen());
+            return MaterialPageRoute(
+              builder: (_) => const ClinicalContextScreen(),
+            );
           case AppRoutes.recordingReady:
-            return MaterialPageRoute(builder: (_) => const RecordingReadyScreen());
+            return MaterialPageRoute(
+              builder: (_) => const RecordingReadyScreen(),
+            );
           case AppRoutes.recordingInProgress:
-            return MaterialPageRoute(builder: (_) => const RecordingInProgressScreen());
+            return MaterialPageRoute(
+              builder: (_) => const RecordingInProgressScreen(),
+            );
           case AppRoutes.recordingPaused:
-            return MaterialPageRoute(builder: (_) => const RecordingPausedScreen());
+            return MaterialPageRoute(
+              builder: (_) => const RecordingPausedScreen(),
+            );
           case AppRoutes.consultationSubmitted:
-            return MaterialPageRoute(builder: (_) => const ConsultationSubmittedScreen());
+            return MaterialPageRoute(
+              builder: (_) => const ConsultationSubmittedScreen(),
+            );
           case AppRoutes.aiProcessing:
-            return MaterialPageRoute(builder: (_) => const AiProcessingScreen());
+            return MaterialPageRoute(
+              builder: (_) => const AiProcessingScreen(),
+            );
           case AppRoutes.consultations:
-            return MaterialPageRoute(builder: (_) => const ConsultationsScreen());
+            return MaterialPageRoute(
+              builder: (_) => const ConsultationsScreen(),
+            );
           case AppRoutes.consultationDetail:
             return MaterialPageRoute(
               builder: (_) => ConsultationDetailScreen(
@@ -211,31 +236,51 @@ class NourDocApp extends StatelessWidget {
               ),
             );
           case AppRoutes.comparePlans:
-            return MaterialPageRoute(builder: (_) => const ComparePlansScreen());
+            return MaterialPageRoute(
+              builder: (_) => const ComparePlansScreen(),
+            );
           case AppRoutes.upgradePlan:
             return MaterialPageRoute(builder: (_) => const UpgradePlanScreen());
           case AppRoutes.mySubscription:
-            return MaterialPageRoute(builder: (_) => const MySubscriptionScreen());
+            return MaterialPageRoute(
+              builder: (_) => const MySubscriptionScreen(),
+            );
           case AppRoutes.paymentMethod:
             return MaterialPageRoute(
               builder: (_) => PaymentMethodScreen(plan: args),
             );
           case AppRoutes.stripePayment:
-            return MaterialPageRoute(builder: (_) => const StripePaymentScreen());
+            return MaterialPageRoute(
+              builder: (_) => const StripePaymentScreen(),
+            );
           case AppRoutes.jazzCashPayment:
-            return MaterialPageRoute(builder: (_) => const JazzCashPaymentScreen());
+            return MaterialPageRoute(
+              builder: (_) => const JazzCashPaymentScreen(),
+            );
           case AppRoutes.easyPaisaPayment:
-            return MaterialPageRoute(builder: (_) => const EasyPaisaPaymentScreen());
+            return MaterialPageRoute(
+              builder: (_) => const EasyPaisaPaymentScreen(),
+            );
           case AppRoutes.bankTransfer:
-            return MaterialPageRoute(builder: (_) => const BankTransferScreen());
+            return MaterialPageRoute(
+              builder: (_) => const BankTransferScreen(),
+            );
           case AppRoutes.paymentPending:
-            return MaterialPageRoute(builder: (_) => const PaymentPendingScreen());
+            return MaterialPageRoute(
+              builder: (_) => const PaymentPendingScreen(),
+            );
           case AppRoutes.paymentSuccess:
-            return MaterialPageRoute(builder: (_) => const PaymentSuccessScreen());
+            return MaterialPageRoute(
+              builder: (_) => const PaymentSuccessScreen(),
+            );
           case AppRoutes.paymentFailed:
-            return MaterialPageRoute(builder: (_) => const PaymentFailedScreen());
+            return MaterialPageRoute(
+              builder: (_) => const PaymentFailedScreen(),
+            );
           case AppRoutes.invoiceHistory:
-            return MaterialPageRoute(builder: (_) => const InvoiceHistoryScreen());
+            return MaterialPageRoute(
+              builder: (_) => const InvoiceHistoryScreen(),
+            );
           case AppRoutes.usageLimits:
             return MaterialPageRoute(builder: (_) => const UsageLimitsScreen());
           case AppRoutes.profile:
@@ -243,7 +288,9 @@ class NourDocApp extends StatelessWidget {
           case AppRoutes.settings:
             return MaterialPageRoute(builder: (_) => const SettingsScreen());
           case AppRoutes.notificationSettings:
-            return MaterialPageRoute(builder: (_) => const NotificationSettingsScreen());
+            return MaterialPageRoute(
+              builder: (_) => const NotificationSettingsScreen(),
+            );
           case AppRoutes.security:
             return MaterialPageRoute(builder: (_) => const SecurityScreen());
           case AppRoutes.emptyStatesShowcase:
@@ -257,4 +304,3 @@ class NourDocApp extends StatelessWidget {
     );
   }
 }
-

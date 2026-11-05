@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/nourdoc_error_state.dart';
+import '../../core/widgets/nourdoc_error_state.dart';
 
 class ErrorStatesScreen extends StatefulWidget {
   const ErrorStatesScreen({super.key});
@@ -19,22 +19,26 @@ class _ErrorStatesScreenState extends State<ErrorStatesScreen> {
     {
       'name': 'No Connection',
       'title': 'Clinical Sync Disconnected',
-      'message': 'Unable to reach the secure medical processing servers. Ambient recordings are safely saved offline.',
+      'message':
+          'Unable to reach the secure medical processing servers. Ambient recordings are safely saved offline.',
     },
     {
       'name': 'Audio Failed',
       'title': 'Microphone Stream Interrupted',
-      'message': 'The ambient audio capture device was disconnected. Please check audio permissions.',
+      'message':
+          'The ambient audio capture device was disconnected. Please check audio permissions.',
     },
     {
       'name': 'Gateway Error',
       'title': 'Payment Processing Unavailable',
-      'message': 'The billing payment provider timed out while confirming credentials. Please retry.',
+      'message':
+          'The billing payment provider timed out while confirming credentials. Please retry.',
     },
     {
       'name': 'Corrupt File',
       'title': 'EHR Record Unavailable',
-      'message': 'The selected clinical consultation archive could not be parsed into FHIR format.',
+      'message':
+          'The selected clinical consultation archive could not be parsed into FHIR format.',
     },
   ];
 
@@ -45,14 +49,20 @@ class _ErrorStatesScreenState extends State<ErrorStatesScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Standardized Error States', style: AppTypography.cardTitle),
+        title: Text(
+          'Standardized Error States',
+          style: AppTypography.cardTitle,
+        ),
       ),
       body: SafeArea(
         child: Column(
           children: [
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal, vertical: 12),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.screenHorizontal,
+                vertical: 12,
+              ),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -71,7 +81,9 @@ class _ErrorStatesScreenState extends State<ErrorStatesScreen> {
                         backgroundColor: AppColors.clinicalMist,
                         shape: RoundedRectangleBorder(
                           borderRadius: AppRadius.smBorder,
-                          side: BorderSide(color: isSel ? AppColors.rose : AppColors.border),
+                          side: BorderSide(
+                            color: isSel ? AppColors.rose : AppColors.border,
+                          ),
                         ),
                         onSelected: (val) {
                           if (val) setState(() => _selectedType = idx);
@@ -89,7 +101,9 @@ class _ErrorStatesScreenState extends State<ErrorStatesScreen> {
                   message: cur['message']!,
                   onRetry: () {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Retrying operation for: ${cur['name']}')),
+                      SnackBar(
+                        content: Text('Retrying operation for: ${cur['name']}'),
+                      ),
                     );
                   },
                 ),
@@ -101,4 +115,3 @@ class _ErrorStatesScreenState extends State<ErrorStatesScreen> {
     );
   }
 }
-

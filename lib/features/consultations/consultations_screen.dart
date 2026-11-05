@@ -3,10 +3,10 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_text_field.dart';
-import '../../shared/widgets/encounter_card.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_text_field.dart';
+import '../../core/widgets/encounter_card.dart';
 import '../../app/routes/app_routes.dart';
 
 class ConsultationsScreen extends StatefulWidget {
@@ -19,7 +19,13 @@ class ConsultationsScreen extends StatefulWidget {
 class _ConsultationsScreenState extends State<ConsultationsScreen> {
   final _searchController = TextEditingController();
   String _selectedFilter = 'All';
-  final List<String> _filters = ['All', 'Today', 'Ready', 'Processing', 'Delayed'];
+  final List<String> _filters = [
+    'All',
+    'Today',
+    'Ready',
+    'Processing',
+    'Delayed',
+  ];
 
   @override
   void dispose() {
@@ -37,14 +43,22 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
     } else if (_selectedFilter == 'Ready') {
       list = list.where((c) => c.status == ConsultationStatus.ready).toList();
     } else if (_selectedFilter == 'Processing') {
-      list = list.where((c) => c.status == ConsultationStatus.processing).toList();
+      list = list
+          .where((c) => c.status == ConsultationStatus.processing)
+          .toList();
     } else if (_selectedFilter == 'Delayed') {
       list = list.where((c) => c.status == ConsultationStatus.delayed).toList();
     }
 
     if (_searchController.text.isNotEmpty) {
       final q = _searchController.text.toLowerCase();
-      list = list.where((c) => c.patientName.toLowerCase().contains(q) || c.primaryDiagnosis.toLowerCase().contains(q)).toList();
+      list = list
+          .where(
+            (c) =>
+                c.patientName.toLowerCase().contains(q) ||
+                c.primaryDiagnosis.toLowerCase().contains(q),
+          )
+          .toList();
     }
 
     return Scaffold(
@@ -53,7 +67,10 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
         title: Text('Consultations', style: AppTypography.cardTitle),
         actions: [
           IconButton(
-            icon: const Icon(Icons.add_circle_outline, color: AppColors.deepJade),
+            icon: const Icon(
+              Icons.add_circle_outline,
+              color: AppColors.deepJade,
+            ),
             onPressed: () {
               Navigator.of(context).pushNamed(AppRoutes.selectPatient);
             },
@@ -78,7 +95,10 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
             ),
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.only(left: AppSpacing.screenHorizontal, bottom: 12),
+              padding: const EdgeInsets.only(
+                left: AppSpacing.screenHorizontal,
+                bottom: 12,
+              ),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -98,7 +118,9 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: AppRadius.smBorder,
                           side: BorderSide(
-                            color: isSel ? AppColors.deepJade : AppColors.border,
+                            color: isSel
+                                ? AppColors.deepJade
+                                : AppColors.border,
                           ),
                         ),
                         onSelected: (val) {
@@ -111,26 +133,40 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal, vertical: 12),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.screenHorizontal,
+                vertical: 12,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('${list.length} Clinical Records', style: AppTypography.label),
-                  Text('Filtered by $_selectedFilter', style: AppTypography.caption),
+                  Text(
+                    '${list.length} Clinical Records',
+                    style: AppTypography.label,
+                  ),
+                  Text(
+                    'Filtered by $_selectedFilter',
+                    style: AppTypography.caption,
+                  ),
                 ],
               ),
             ),
             Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.screenHorizontal,
+                ),
                 itemCount: list.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 12),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   final c = list[index];
                   return EncounterCard(
                     consultation: c,
                     onTap: () {
-                      Navigator.of(context).pushNamed(AppRoutes.consultationDetail, arguments: c);
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.consultationDetail, arguments: c);
                     },
                   );
                 },
@@ -142,4 +178,3 @@ class _ConsultationsScreenState extends State<ConsultationsScreen> {
     );
   }
 }
-

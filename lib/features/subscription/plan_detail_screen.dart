@@ -3,9 +3,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class PlanDetailScreen extends StatelessWidget {
@@ -38,35 +38,73 @@ class PlanDetailScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: AppRadius.mdBorder,
-                        border: Border.all(color: AppColors.deepJade, width: 1.5),
+                        border: Border.all(
+                          color: AppColors.deepJade,
+                          width: 1.5,
+                        ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(p.name, style: AppTypography.pageTitle.copyWith(fontSize: 22, color: AppColors.deepJade)),
+                          Text(
+                            p.name,
+                            style: AppTypography.pageTitle.copyWith(
+                              fontSize: 22,
+                              color: AppColors.deepJade,
+                            ),
+                          ),
                           const SizedBox(height: 6),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.baseline,
                             textBaseline: TextBaseline.alphabetic,
                             children: [
-                              Text(p.price, style: AppTypography.pageTitle.copyWith(fontSize: 34)),
+                              Text(
+                                p.price,
+                                style: AppTypography.pageTitle.copyWith(
+                                  fontSize: 34,
+                                ),
+                              ),
                               const SizedBox(width: 6),
-                              Text(p.billingPeriod, style: AppTypography.caption),
+                              Text(
+                                p.billingPeriod,
+                                style: AppTypography.caption,
+                              ),
                             ],
                           ),
                           const SizedBox(height: 10),
-                          Text(p.description, style: AppTypography.body.copyWith(color: AppColors.slate)),
+                          Text(
+                            p.description,
+                            style: AppTypography.body.copyWith(
+                              color: AppColors.slate,
+                            ),
+                          ),
                           const SizedBox(height: 20),
-                          Text('Included Clinical Capabilities:', style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                          Text(
+                            'Included Clinical Capabilities:',
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 14,
+                            ),
+                          ),
                           const SizedBox(height: 12),
                           ...p.features.map(
                             (f) => Padding(
                               padding: const EdgeInsets.only(bottom: 10),
                               child: Row(
                                 children: [
-                                  const Icon(Icons.check_circle_outline, size: 18, color: AppColors.deepJade),
+                                  const Icon(
+                                    Icons.check_circle_outline,
+                                    size: 18,
+                                    color: AppColors.deepJade,
+                                  ),
                                   const SizedBox(width: 10),
-                                  Expanded(child: Text(f, style: AppTypography.body.copyWith(fontSize: 13.5))),
+                                  Expanded(
+                                    child: Text(
+                                      f,
+                                      style: AppTypography.body.copyWith(
+                                        fontSize: 13.5,
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -80,9 +118,18 @@ class PlanDetailScreen extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                const Icon(Icons.speed_outlined, size: 16, color: AppColors.slate),
+                                const Icon(
+                                  Icons.speed_outlined,
+                                  size: 16,
+                                  color: AppColors.slate,
+                                ),
                                 const SizedBox(width: 8),
-                                Text('Quota: ${p.limits}', style: AppTypography.caption.copyWith(fontWeight: FontWeight.w600)),
+                                Text(
+                                  'Quota: ${p.limits}',
+                                  style: AppTypography.caption.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -99,7 +146,11 @@ class PlanDetailScreen extends StatelessWidget {
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.shield_outlined, color: AppColors.deepJade, size: 20),
+                          const Icon(
+                            Icons.shield_outlined,
+                            color: AppColors.deepJade,
+                            size: 20,
+                          ),
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
@@ -117,7 +168,9 @@ class PlanDetailScreen extends StatelessWidget {
               AppButton(
                 label: 'Proceed to Payment Method',
                 onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.paymentMethod, arguments: p);
+                  Navigator.of(
+                    context,
+                  ).pushNamed(AppRoutes.paymentMethod, arguments: p);
                 },
               ),
               const SizedBox(height: 12),
@@ -128,4 +181,3 @@ class PlanDetailScreen extends StatelessWidget {
     );
   }
 }
-

@@ -3,8 +3,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/app_text_field.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_text_field.dart';
 import '../../app/routes/app_routes.dart';
 
 class JazzCashPaymentScreen extends StatefulWidget {
@@ -57,7 +57,9 @@ class _JazzCashPaymentScreenState extends State<JazzCashPaymentScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: AppRadius.mdBorder,
-                  border: Border.all(color: AppColors.warmAmber.withOpacity(0.5)),
+                  border: Border.all(
+                    color: AppColors.warmAmber.withOpacity(0.5),
+                  ),
                 ),
                 child: Row(
                   children: [
@@ -67,15 +69,27 @@ class _JazzCashPaymentScreenState extends State<JazzCashPaymentScreen> {
                         color: AppColors.warmAmber.withOpacity(0.12),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.account_balance_wallet, color: AppColors.warmAmber, size: 24),
+                      child: const Icon(
+                        Icons.account_balance_wallet,
+                        color: AppColors.warmAmber,
+                        size: 24,
+                      ),
                     ),
                     const SizedBox(width: 14),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('JazzCash Mobile Account', style: AppTypography.cardTitle.copyWith(fontSize: 15)),
-                          Text('NourDoc Professional: PKR 27,500', style: AppTypography.caption),
+                          Text(
+                            'JazzCash Mobile Account',
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 15,
+                            ),
+                          ),
+                          Text(
+                            'NourDoc Professional: PKR 27,500',
+                            style: AppTypography.caption,
+                          ),
                         ],
                       ),
                     ),
@@ -132,4 +146,3 @@ class _JazzCashPaymentScreenState extends State<JazzCashPaymentScreen> {
     );
   }
 }
-

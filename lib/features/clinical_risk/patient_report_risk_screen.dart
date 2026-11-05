@@ -3,9 +3,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/risk_card.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/risk_card.dart';
 import '../../app/routes/app_routes.dart';
 
 class PatientReportRiskScreen extends StatefulWidget {
@@ -14,7 +14,8 @@ class PatientReportRiskScreen extends StatefulWidget {
   const PatientReportRiskScreen({super.key, this.consultation});
 
   @override
-  State<PatientReportRiskScreen> createState() => _PatientReportRiskScreenState();
+  State<PatientReportRiskScreen> createState() =>
+      _PatientReportRiskScreenState();
 }
 
 class _PatientReportRiskScreenState extends State<PatientReportRiskScreen> {
@@ -38,7 +39,9 @@ class _PatientReportRiskScreenState extends State<PatientReportRiskScreen> {
 
   void _confirmSignal(int index) {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Risk signal confirmed & documented in note')),
+      const SnackBar(
+        content: Text('Risk signal confirmed & documented in note'),
+      ),
     );
   }
 
@@ -67,7 +70,11 @@ class _PatientReportRiskScreenState extends State<PatientReportRiskScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Icon(Icons.info_outline, color: AppColors.warmAmber, size: 22),
+                  const Icon(
+                    Icons.info_outline,
+                    color: AppColors.warmAmber,
+                    size: 22,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -75,12 +82,18 @@ class _PatientReportRiskScreenState extends State<PatientReportRiskScreen> {
                       children: [
                         Text(
                           'Important Safety Principle',
-                          style: AppTypography.cardTitle.copyWith(fontSize: 14, color: AppColors.charcoal),
+                          style: AppTypography.cardTitle.copyWith(
+                            fontSize: 14,
+                            color: AppColors.charcoal,
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           'No AI signal detected does NOT guarantee absence of clinical risk. Clinician judgment remains paramount.',
-                          style: AppTypography.caption.copyWith(color: AppColors.charcoal, height: 1.4),
+                          style: AppTypography.caption.copyWith(
+                            color: AppColors.charcoal,
+                            height: 1.4,
+                          ),
                         ),
                       ],
                     ),
@@ -90,14 +103,20 @@ class _PatientReportRiskScreenState extends State<PatientReportRiskScreen> {
             ),
             const SizedBox(height: 20),
 
-            Text('Active Diagnostic & Treatment Flags (${_signals.length})', style: AppTypography.sectionTitle.copyWith(fontSize: 16)),
+            Text(
+              'Active Diagnostic & Treatment Flags (${_signals.length})',
+              style: AppTypography.sectionTitle.copyWith(fontSize: 16),
+            ),
             const SizedBox(height: 10),
 
             if (_signals.isEmpty)
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(32),
-                  child: Text('All flagged risk items reviewed and reconciled.', style: AppTypography.body),
+                  child: Text(
+                    'All flagged risk items reviewed and reconciled.',
+                    style: AppTypography.body,
+                  ),
                 ),
               )
             else
@@ -108,7 +127,9 @@ class _PatientReportRiskScreenState extends State<PatientReportRiskScreen> {
                   child: RiskCard(
                     signal: sig,
                     onTap: () {
-                      Navigator.of(context).pushNamed(AppRoutes.riskDetail, arguments: sig);
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.riskDetail, arguments: sig);
                     },
                     onDismiss: () => _dismissSignal(index),
                     onConfirm: () => _confirmSignal(index),
@@ -122,4 +143,3 @@ class _PatientReportRiskScreenState extends State<PatientReportRiskScreen> {
     );
   }
 }
-

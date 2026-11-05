@@ -3,9 +3,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class PlansScreen extends StatelessWidget {
@@ -52,10 +52,12 @@ class PlansScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            ...plans.map((plan) => Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: _buildPlanCard(context, plan),
-                )),
+            ...plans.map(
+              (plan) => Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: _buildPlanCard(context, plan),
+              ),
+            ),
 
             const SizedBox(height: 12),
             OutlinedButton(
@@ -69,7 +71,9 @@ class PlansScreen extends StatelessWidget {
               ),
               child: Text(
                 'View Current Usage & Encounter Limits',
-                style: AppTypography.bodyMedium.copyWith(color: AppColors.charcoal),
+                style: AppTypography.bodyMedium.copyWith(
+                  color: AppColors.charcoal,
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -108,7 +112,10 @@ class PlansScreen extends StatelessWidget {
               ),
               if (isCurrent)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.paleJade,
                     borderRadius: AppRadius.smBorder,
@@ -146,7 +153,10 @@ class PlansScreen extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             plan.description,
-            style: AppTypography.body.copyWith(fontSize: 13, color: AppColors.slate),
+            style: AppTypography.body.copyWith(
+              fontSize: 13,
+              color: AppColors.slate,
+            ),
           ),
           const SizedBox(height: 16),
           const Divider(height: 1),
@@ -157,12 +167,19 @@ class PlansScreen extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: Row(
                 children: [
-                  const Icon(Icons.check_circle_rounded, size: 16, color: AppColors.deepJade),
+                  const Icon(
+                    Icons.check_circle_rounded,
+                    size: 16,
+                    color: AppColors.deepJade,
+                  ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       feat,
-                      style: AppTypography.body.copyWith(fontSize: 13, color: AppColors.charcoal),
+                      style: AppTypography.body.copyWith(
+                        fontSize: 13,
+                        color: AppColors.charcoal,
+                      ),
                     ),
                   ),
                 ],
@@ -172,13 +189,19 @@ class PlansScreen extends StatelessWidget {
           const SizedBox(height: 16),
 
           AppButton(
-            label: isCurrent ? 'Manage Subscription' : (plan.id == 'plan_enterprise' ? 'Contact Sales' : 'Select ${plan.name}'),
+            label: isCurrent
+                ? 'Manage Subscription'
+                : (plan.id == 'plan_enterprise'
+                      ? 'Contact Sales'
+                      : 'Select ${plan.name}'),
             variant: isCurrent ? ButtonVariant.outline : ButtonVariant.primary,
             onPressed: () {
               if (isCurrent) {
                 Navigator.of(context).pushNamed(AppRoutes.mySubscription);
               } else {
-                Navigator.of(context).pushNamed(AppRoutes.planDetail, arguments: plan);
+                Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.planDetail, arguments: plan);
               }
             },
           ),
@@ -187,4 +210,3 @@ class PlansScreen extends StatelessWidget {
     );
   }
 }
-

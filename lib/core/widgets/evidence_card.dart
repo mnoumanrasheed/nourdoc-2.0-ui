@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_shadows.dart';
-import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_models.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_shadows.dart';
+import '../theme/app_typography.dart';
+import '../models/mock/mock_models.dart';
 
 class EvidenceCard extends StatelessWidget {
   final MockEvidence evidence;
@@ -58,14 +58,21 @@ class EvidenceCard extends StatelessWidget {
                 onTap: onJumpToTimestamp,
                 borderRadius: AppRadius.xsBorder,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.paleJade,
                     borderRadius: AppRadius.xsBorder,
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.play_circle_outline, size: 14, color: AppColors.deepJade),
+                      const Icon(
+                        Icons.play_circle_outline,
+                        size: 14,
+                        color: AppColors.deepJade,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         evidence.timestamp,
@@ -92,7 +99,11 @@ class EvidenceCard extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              const Icon(Icons.record_voice_over_outlined, size: 14, color: AppColors.slate),
+              const Icon(
+                Icons.record_voice_over_outlined,
+                size: 14,
+                color: AppColors.slate,
+              ),
               const SizedBox(width: 6),
               Text(
                 evidence.speaker,
@@ -108,4 +119,3 @@ class EvidenceCard extends StatelessWidget {
     );
   }
 }
-

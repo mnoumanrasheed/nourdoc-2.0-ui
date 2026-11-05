@@ -3,9 +3,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/evidence_card.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/evidence_card.dart';
 import '../../app/routes/app_routes.dart';
 
 class PatientReportEvidenceScreen extends StatelessWidget {
@@ -20,12 +20,17 @@ class PatientReportEvidenceScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Clinical Evidence Traceability', style: AppTypography.cardTitle),
+        title: Text(
+          'Clinical Evidence Traceability',
+          style: AppTypography.cardTitle,
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.sync_alt_outlined),
             onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.evidenceTranscript, arguments: c);
+              Navigator.of(
+                context,
+              ).pushNamed(AppRoutes.evidenceTranscript, arguments: c);
             },
             tooltip: 'Trace to Transcript',
           ),
@@ -51,15 +56,25 @@ class PatientReportEvidenceScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.hub_outlined, color: AppColors.deepJade, size: 20),
+                      const Icon(
+                        Icons.hub_outlined,
+                        color: AppColors.deepJade,
+                        size: 20,
+                      ),
                       const SizedBox(width: 8),
-                      Text('Transparent Diagnostic Lineage', style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                      Text(
+                        'Transparent Diagnostic Lineage',
+                        style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 6),
                   Text(
                     'AI Diagnostic Suggestion ➔ Clinical Evidence ➔ Audio Timestamp',
-                    style: AppTypography.metadata.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.w700),
+                    style: AppTypography.metadata.copyWith(
+                      color: AppColors.deepJade,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -79,7 +94,10 @@ class PatientReportEvidenceScreen extends StatelessWidget {
                   onJumpToTimestamp: () {
                     Navigator.of(context).pushNamed(
                       AppRoutes.evidenceTranscript,
-                      arguments: {'consultation': c, 'activeTimestamp': ev.timestamp},
+                      arguments: {
+                        'consultation': c,
+                        'activeTimestamp': ev.timestamp,
+                      },
                     );
                   },
                 ),
@@ -92,4 +110,3 @@ class PatientReportEvidenceScreen extends StatelessWidget {
     );
   }
 }
-

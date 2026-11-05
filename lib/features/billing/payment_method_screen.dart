@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
@@ -148,7 +148,10 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                      Text(
+                        title,
+                        style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                      ),
                       const SizedBox(height: 2),
                       Text(subtitle, style: AppTypography.caption),
                     ],
@@ -170,4 +173,3 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
     );
   }
 }
-

@@ -3,11 +3,11 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/clinical_badges.dart';
-import '../../shared/widgets/app_audio_player.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/clinical_badges.dart';
+import '../../core/widgets/app_audio_player.dart';
 import '../../app/routes/app_routes.dart';
 
 class ConsultationDetailScreen extends StatelessWidget {
@@ -22,12 +22,12 @@ class ConsultationDetailScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Consultation #${c.id.split('-').last}', style: AppTypography.cardTitle),
+        title: Text(
+          'Consultation #${c.id.split('-').last}',
+          style: AppTypography.cardTitle,
+        ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.share_outlined),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Icons.share_outlined), onPressed: () {}),
         ],
       ),
       body: SafeArea(
@@ -57,7 +57,9 @@ class ConsultationDetailScreen extends StatelessWidget {
                           children: [
                             Text(
                               c.patientName,
-                              style: AppTypography.cardTitle.copyWith(fontSize: 17),
+                              style: AppTypography.cardTitle.copyWith(
+                                fontSize: 17,
+                              ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             const SizedBox(height: 2),
@@ -96,13 +98,19 @@ class ConsultationDetailScreen extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Audio Player Card
-            Text('Encounter Audio', style: AppTypography.sectionTitle.copyWith(fontSize: 15)),
+            Text(
+              'Encounter Audio',
+              style: AppTypography.sectionTitle.copyWith(fontSize: 15),
+            ),
             const SizedBox(height: 8),
             const AppAudioPlayer(totalDuration: '11:45'),
             const SizedBox(height: 20),
 
             // Navigation to Specific Report Modules
-            Text('Clinical Documentation Sections', style: AppTypography.sectionTitle.copyWith(fontSize: 15)),
+            Text(
+              'Clinical Documentation Sections',
+              style: AppTypography.sectionTitle.copyWith(fontSize: 15),
+            ),
             const SizedBox(height: 10),
 
             _buildNavTile(
@@ -118,7 +126,8 @@ class ConsultationDetailScreen extends StatelessWidget {
               context: context,
               icon: Icons.receipt_long_outlined,
               title: 'ICD-10 & CPT Medical Coding',
-              subtitle: '${c.codings.length} Suggested billing codes ready for clinician confirmation',
+              subtitle:
+                  '${c.codings.length} Suggested billing codes ready for clinician confirmation',
               route: AppRoutes.reportCoding,
               arguments: c,
             ),
@@ -127,7 +136,8 @@ class ConsultationDetailScreen extends StatelessWidget {
               context: context,
               icon: Icons.search_outlined,
               title: 'Clinical Evidence Traceability',
-              subtitle: '${c.evidenceList.length} Quotes anchored directly to audio timestamps',
+              subtitle:
+                  '${c.evidenceList.length} Quotes anchored directly to audio timestamps',
               route: AppRoutes.reportEvidence,
               arguments: c,
             ),
@@ -136,7 +146,8 @@ class ConsultationDetailScreen extends StatelessWidget {
               context: context,
               icon: Icons.warning_amber_rounded,
               title: 'AI Clinical Risk Analysis',
-              subtitle: '${c.riskSignals.length} Safety signals detected for review',
+              subtitle:
+                  '${c.riskSignals.length} Safety signals detected for review',
               route: AppRoutes.reportRisk,
               arguments: c,
               alertColor: AppColors.warmAmber,
@@ -156,7 +167,9 @@ class ConsultationDetailScreen extends StatelessWidget {
               label: 'Proceed to Final Clinical Review',
               icon: Icons.verified_outlined,
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.finalClinicalReview, arguments: c);
+                Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.finalClinicalReview, arguments: c);
               },
             ),
             const SizedBox(height: 20),
@@ -179,7 +192,9 @@ class ConsultationDetailScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: AppRadius.mdBorder,
-        border: Border.all(color: alertColor?.withOpacity(0.4) ?? AppColors.border),
+        border: Border.all(
+          color: alertColor?.withOpacity(0.4) ?? AppColors.border,
+        ),
       ),
       child: ListTile(
         onTap: () {
@@ -193,11 +208,17 @@ class ConsultationDetailScreen extends StatelessWidget {
           ),
           child: Icon(icon, color: alertColor ?? AppColors.deepJade, size: 22),
         ),
-        title: Text(title, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+        title: Text(
+          title,
+          style: AppTypography.cardTitle.copyWith(fontSize: 14),
+        ),
         subtitle: Text(subtitle, style: AppTypography.caption),
-        trailing: const Icon(Icons.chevron_right, color: AppColors.slateLight, size: 20),
+        trailing: const Icon(
+          Icons.chevron_right,
+          color: AppColors.slateLight,
+          size: 20,
+        ),
       ),
     );
   }
 }
-

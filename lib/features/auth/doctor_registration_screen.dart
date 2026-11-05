@@ -2,22 +2,27 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/app_text_field.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_text_field.dart';
 import '../../app/routes/app_routes.dart';
 
 class DoctorRegistrationScreen extends StatefulWidget {
   const DoctorRegistrationScreen({super.key});
 
   @override
-  State<DoctorRegistrationScreen> createState() => _DoctorRegistrationScreenState();
+  State<DoctorRegistrationScreen> createState() =>
+      _DoctorRegistrationScreenState();
 }
 
 class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
   final _nameController = TextEditingController(text: 'Dr. Muhammad Nouman');
   final _licenseController = TextEditingController(text: 'PMC-92810-A');
-  final _hospitalController = TextEditingController(text: 'Central Teaching Hospital');
-  final _emailController = TextEditingController(text: 'dr.nouman@nourdoc.health');
+  final _hospitalController = TextEditingController(
+    text: 'Central Teaching Hospital',
+  );
+  final _emailController = TextEditingController(
+    text: 'dr.nouman@nourdoc.health',
+  );
   final _phoneController = TextEditingController(text: '+92 300 1234567');
   String _specialty = 'Internal Medicine';
 
@@ -54,7 +59,10 @@ class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal, vertical: 16),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.screenHorizontal,
+            vertical: 16,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -72,14 +80,20 @@ class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
                 label: 'Full Name with Title',
                 hintText: 'e.g. Dr. Jane Smith, MD',
                 controller: _nameController,
-                prefixIcon: const Icon(Icons.person_outline, color: AppColors.slate),
+                prefixIcon: const Icon(
+                  Icons.person_outline,
+                  color: AppColors.slate,
+                ),
               ),
               const SizedBox(height: 16),
               AppTextField(
                 label: 'Medical Registration / License Number',
                 hintText: 'e.g. MED-882190',
                 controller: _licenseController,
-                prefixIcon: const Icon(Icons.verified_outlined, color: AppColors.slate),
+                prefixIcon: const Icon(
+                  Icons.verified_outlined,
+                  color: AppColors.slate,
+                ),
               ),
               const SizedBox(height: 16),
               Column(
@@ -117,7 +131,10 @@ class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
                 label: 'Primary Hospital / Practice Setting',
                 hintText: 'e.g. Metropolitan General Hospital',
                 controller: _hospitalController,
-                prefixIcon: const Icon(Icons.local_hospital_outlined, color: AppColors.slate),
+                prefixIcon: const Icon(
+                  Icons.local_hospital_outlined,
+                  color: AppColors.slate,
+                ),
               ),
               const SizedBox(height: 16),
               AppTextField(
@@ -125,7 +142,10 @@ class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
                 hintText: 'name@hospital.org',
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: const Icon(Icons.email_outlined, color: AppColors.slate),
+                prefixIcon: const Icon(
+                  Icons.email_outlined,
+                  color: AppColors.slate,
+                ),
               ),
               const SizedBox(height: 16),
               AppTextField(
@@ -133,7 +153,10 @@ class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
                 hintText: '+1 (555) 000-0000',
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
-                prefixIcon: const Icon(Icons.phone_outlined, color: AppColors.slate),
+                prefixIcon: const Icon(
+                  Icons.phone_outlined,
+                  color: AppColors.slate,
+                ),
               ),
               const SizedBox(height: 32),
               AppButton(
@@ -150,4 +173,3 @@ class _DoctorRegistrationScreenState extends State<DoctorRegistrationScreen> {
     );
   }
 }
-

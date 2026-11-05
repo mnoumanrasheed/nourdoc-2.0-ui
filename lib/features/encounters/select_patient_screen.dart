@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_text_field.dart';
-import '../../shared/widgets/patient_card.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_text_field.dart';
+import '../../core/widgets/patient_card.dart';
 import '../../app/routes/app_routes.dart';
 
 class SelectPatientScreen extends StatefulWidget {
@@ -25,7 +25,13 @@ class _SelectPatientScreenState extends State<SelectPatientScreen> {
         _list = MockData.patients;
       } else {
         final q = query.toLowerCase();
-        _list = MockData.patients.where((p) => p.name.toLowerCase().contains(q) || p.mrn.toLowerCase().contains(q)).toList();
+        _list = MockData.patients
+            .where(
+              (p) =>
+                  p.name.toLowerCase().contains(q) ||
+                  p.mrn.toLowerCase().contains(q),
+            )
+            .toList();
       }
     });
   }
@@ -41,7 +47,10 @@ class _SelectPatientScreenState extends State<SelectPatientScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('New Encounter — Select Patient', style: AppTypography.cardTitle),
+        title: Text(
+          'New Encounter — Select Patient',
+          style: AppTypography.cardTitle,
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.person_add_alt_1_outlined),
@@ -58,7 +67,10 @@ class _SelectPatientScreenState extends State<SelectPatientScreen> {
           children: [
             Container(
               color: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal, vertical: 12),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.screenHorizontal,
+                vertical: 12,
+              ),
               child: AppTextField(
                 controller: _searchController,
                 hintText: 'Search patient by name or MRN...',
@@ -67,7 +79,10 @@ class _SelectPatientScreenState extends State<SelectPatientScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal, vertical: 14),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.screenHorizontal,
+                vertical: 14,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -82,7 +97,11 @@ class _SelectPatientScreenState extends State<SelectPatientScreen> {
                     onPressed: () {
                       Navigator.of(context).pushNamed(AppRoutes.patientIntake);
                     },
-                    icon: const Icon(Icons.add, size: 16, color: AppColors.deepJade),
+                    icon: const Icon(
+                      Icons.add,
+                      size: 16,
+                      color: AppColors.deepJade,
+                    ),
                     label: Text(
                       'Quick Intake',
                       style: AppTypography.metadata.copyWith(
@@ -96,18 +115,25 @@ class _SelectPatientScreenState extends State<SelectPatientScreen> {
             ),
             Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.screenHorizontal,
+                ),
                 itemCount: _list.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 12),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   final patient = _list[index];
                   return PatientCard(
                     patient: patient,
                     onTap: () {
-                      Navigator.of(context).pushNamed(AppRoutes.careSetting, arguments: patient);
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.careSetting, arguments: patient);
                     },
                     onStartEncounter: () {
-                      Navigator.of(context).pushNamed(AppRoutes.careSetting, arguments: patient);
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.careSetting, arguments: patient);
                     },
                   );
                 },

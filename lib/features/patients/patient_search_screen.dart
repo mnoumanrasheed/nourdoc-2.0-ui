@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_text_field.dart';
-import '../../shared/widgets/patient_card.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_text_field.dart';
+import '../../core/widgets/patient_card.dart';
 import '../../app/routes/app_routes.dart';
 
 class PatientSearchScreen extends StatefulWidget {
@@ -94,24 +94,25 @@ class _PatientSearchScreenState extends State<PatientSearchScreen> {
             ),
             Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.screenHorizontal,
+                ),
                 itemCount: _results.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 12),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   final patient = _results[index];
                   return PatientCard(
                     patient: patient,
                     onTap: () {
-                      Navigator.of(context).pushNamed(
-                        AppRoutes.patientProfile,
-                        arguments: patient,
-                      );
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.patientProfile, arguments: patient);
                     },
                     onStartEncounter: () {
-                      Navigator.of(context).pushNamed(
-                        AppRoutes.careSetting,
-                        arguments: patient,
-                      );
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.careSetting, arguments: patient);
                     },
                   );
                 },
@@ -123,4 +124,3 @@ class _PatientSearchScreenState extends State<PatientSearchScreen> {
     );
   }
 }
-

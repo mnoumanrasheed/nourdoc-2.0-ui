@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_typography.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_typography.dart';
 import 'app_button.dart';
 
 class NourDocErrorState extends StatelessWidget {
@@ -11,7 +11,8 @@ class NourDocErrorState extends StatelessWidget {
   const NourDocErrorState({
     super.key,
     this.title = 'Unable to Load Content',
-    this.message = 'A clinical synchronization or connection error occurred. Please try again.',
+    this.message =
+        'A clinical synchronization or connection error occurred. Please try again.',
     this.onRetry,
   });
 
@@ -30,9 +31,16 @@ class NourDocErrorState extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.roseLight,
                 shape: BoxShape.circle,
-                border: Border.all(color: AppColors.rose.withOpacity(0.3), width: 1.5),
+                border: Border.all(
+                  color: AppColors.rose.withOpacity(0.3),
+                  width: 1.5,
+                ),
               ),
-              child: const Icon(Icons.error_outline_rounded, size: 36, color: AppColors.rose),
+              child: const Icon(
+                Icons.error_outline_rounded,
+                size: 36,
+                color: AppColors.rose,
+              ),
             ),
             const SizedBox(height: 18),
             Text(
@@ -44,7 +52,10 @@ class NourDocErrorState extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: AppTypography.body.copyWith(color: AppColors.slate, fontSize: 13),
+              style: AppTypography.body.copyWith(
+                color: AppColors.slate,
+                fontSize: 13,
+              ),
             ),
             if (onRetry != null) ...[
               const SizedBox(height: 22),
@@ -64,4 +75,3 @@ class NourDocErrorState extends StatelessWidget {
     );
   }
 }
-

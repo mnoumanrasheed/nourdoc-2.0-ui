@@ -3,8 +3,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -32,7 +32,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           TextButton(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('All notifications marked as read')),
+                const SnackBar(
+                  content: Text('All notifications marked as read'),
+                ),
               );
             },
             child: Text(
@@ -62,7 +64,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 color: item.isUnread ? Colors.white : AppColors.clinicalMist,
                 borderRadius: AppRadius.mdBorder,
                 border: Border.all(
-                  color: item.isUnread ? item.color.withOpacity(0.3) : AppColors.border,
+                  color: item.isUnread
+                      ? item.color.withOpacity(0.3)
+                      : AppColors.border,
                   width: item.isUnread ? 1.2 : 1.0,
                 ),
               ),
@@ -96,7 +100,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             ),
                             Text(
                               item.timeAgo,
-                              style: AppTypography.caption.copyWith(color: AppColors.slate),
+                              style: AppTypography.caption.copyWith(
+                                color: AppColors.slate,
+                              ),
                             ),
                           ],
                         ),
@@ -120,4 +126,3 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     );
   }
 }
-

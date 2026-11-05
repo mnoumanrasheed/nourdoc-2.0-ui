@@ -3,8 +3,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
 
 class PatientReportSoapScreen extends StatelessWidget {
   final MockConsultation? consultation;
@@ -19,13 +19,18 @@ class PatientReportSoapScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('SOAP Clinical Documentation', style: AppTypography.cardTitle),
+        title: Text(
+          'SOAP Clinical Documentation',
+          style: AppTypography.cardTitle,
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.copy_outlined),
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('SOAP note copied to clipboard for EHR')),
+                const SnackBar(
+                  content: Text('SOAP note copied to clipboard for EHR'),
+                ),
               );
             },
             tooltip: 'Copy Note',
@@ -134,8 +139,12 @@ class PatientReportSoapScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
               color: color.withOpacity(0.06),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(14)),
-              border: Border(bottom: BorderSide(color: color.withOpacity(0.15))),
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(14),
+              ),
+              border: Border(
+                bottom: BorderSide(color: color.withOpacity(0.15)),
+              ),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -177,7 +186,10 @@ class PatientReportSoapScreen extends StatelessWidget {
                     badge,
                     textAlign: TextAlign.end,
                     overflow: TextOverflow.ellipsis,
-                    style: AppTypography.caption.copyWith(color: AppColors.slate, fontStyle: FontStyle.italic),
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.slate,
+                      fontStyle: FontStyle.italic,
+                    ),
                   ),
                 ),
               ],

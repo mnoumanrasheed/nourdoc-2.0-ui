@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class PaymentPendingScreen extends StatelessWidget {
@@ -13,9 +13,7 @@ class PaymentPendingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -32,7 +30,10 @@ class PaymentPendingScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.amberLight,
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.warmAmber.withOpacity(0.4), width: 2),
+                  border: Border.all(
+                    color: AppColors.warmAmber.withOpacity(0.4),
+                    width: 2,
+                  ),
                 ),
                 child: const Icon(
                   Icons.hourglass_top_rounded,
@@ -63,8 +64,17 @@ class PaymentPendingScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Estimated Approval Time', style: AppTypography.caption),
-                    Text('15 – 30 Minutes', style: AppTypography.metadata.copyWith(fontWeight: FontWeight.bold, color: AppColors.warmAmber)),
+                    Text(
+                      'Estimated Approval Time',
+                      style: AppTypography.caption,
+                    ),
+                    Text(
+                      '15 – 30 Minutes',
+                      style: AppTypography.metadata.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.warmAmber,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -72,7 +82,9 @@ class PaymentPendingScreen extends StatelessWidget {
               AppButton(
                 label: 'Simulate Approval (Instant Success)',
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.paymentSuccess);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.paymentSuccess);
                 },
               ),
               const SizedBox(height: 12),
@@ -80,7 +92,9 @@ class PaymentPendingScreen extends StatelessWidget {
                 label: 'Return to Workspace',
                 variant: ButtonVariant.secondary,
                 onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
                 },
               ),
               const SizedBox(height: 12),
@@ -91,4 +105,3 @@ class PaymentPendingScreen extends StatelessWidget {
     );
   }
 }
-

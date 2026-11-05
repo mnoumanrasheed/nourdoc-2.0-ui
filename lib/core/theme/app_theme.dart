@@ -47,9 +47,7 @@ class AppTheme {
           backgroundColor: AppColors.deepJade,
           foregroundColor: Colors.white,
           minimumSize: const Size.fromHeight(50),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadius.mdBorder,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadius.mdBorder),
           textStyle: AppTypography.button,
           elevation: 0,
         ),
@@ -59,16 +57,17 @@ class AppTheme {
           foregroundColor: AppColors.deepJade,
           side: const BorderSide(color: AppColors.deepJade, width: 1.5),
           minimumSize: const Size.fromHeight(50),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadius.mdBorder,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadius.mdBorder),
           textStyle: AppTypography.button.copyWith(color: AppColors.deepJade),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
+        ),
         hintStyle: AppTypography.body.copyWith(color: AppColors.slateLight),
         border: OutlineInputBorder(
           borderRadius: AppRadius.mdBorder,

@@ -70,4 +70,3 @@ class AppRoutes {
   static const String emptyStatesShowcase = '/empty-states-showcase';
   static const String errorStatesShowcase = '/error-states-showcase';
 }
-

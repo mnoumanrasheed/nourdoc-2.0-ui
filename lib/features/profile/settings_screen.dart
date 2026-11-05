@@ -42,27 +42,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: Column(
                 children: [
                   SwitchListTile(
-                    title: Text('Ambient Noise Filtering', style: AppTypography.bodyMedium),
-                    subtitle: Text('Suppresses hospital background chatter and monitors', style: AppTypography.caption),
+                    title: Text(
+                      'Ambient Noise Filtering',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Suppresses hospital background chatter and monitors',
+                      style: AppTypography.caption,
+                    ),
                     value: _ambientNoiseFiltering,
                     activeColor: AppColors.deepJade,
-                    onChanged: (v) => setState(() => _ambientNoiseFiltering = v),
+                    onChanged: (v) =>
+                        setState(() => _ambientNoiseFiltering = v),
                   ),
                   const Divider(height: 1),
                   SwitchListTile(
-                    title: Text('Auto-Generate SOAP Post-Recording', style: AppTypography.bodyMedium),
-                    subtitle: Text('Immediately begins staging SOAP note synthesis', style: AppTypography.caption),
+                    title: Text(
+                      'Auto-Generate SOAP Post-Recording',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Immediately begins staging SOAP note synthesis',
+                      style: AppTypography.caption,
+                    ),
                     value: _autoGenerateSoap,
                     activeColor: AppColors.deepJade,
                     onChanged: (v) => setState(() => _autoGenerateSoap = v),
                   ),
                   const Divider(height: 1),
                   SwitchListTile(
-                    title: Text('High Confidence Risk Signals Only', style: AppTypography.bodyMedium),
-                    subtitle: Text('Suppresses low-threshold warnings (>90% threshold)', style: AppTypography.caption),
+                    title: Text(
+                      'High Confidence Risk Signals Only',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Suppresses low-threshold warnings (>90% threshold)',
+                      style: AppTypography.caption,
+                    ),
                     value: _highConfidenceAlertsOnly,
                     activeColor: AppColors.deepJade,
-                    onChanged: (v) => setState(() => _highConfidenceAlertsOnly = v),
+                    onChanged: (v) =>
+                        setState(() => _highConfidenceAlertsOnly = v),
                   ),
                 ],
               ),
@@ -78,12 +98,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 border: Border.all(color: AppColors.border),
               ),
               child: ListTile(
-                title: Text('Clinical Lexicon Dialect', style: AppTypography.bodyMedium),
-                subtitle: Text(_preferredLanguage, style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.bold)),
+                title: Text(
+                  'Clinical Lexicon Dialect',
+                  style: AppTypography.bodyMedium,
+                ),
+                subtitle: Text(
+                  _preferredLanguage,
+                  style: AppTypography.caption.copyWith(
+                    color: AppColors.deepJade,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 trailing: const Icon(Icons.chevron_right, size: 20),
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Dialect configured to English (US Clinical)')),
+                    const SnackBar(
+                      content: Text(
+                        'Dialect configured to English (US Clinical)',
+                      ),
+                    ),
                   );
                 },
               ),

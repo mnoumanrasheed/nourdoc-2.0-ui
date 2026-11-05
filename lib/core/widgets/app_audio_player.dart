@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_typography.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_typography.dart';
 
 class AppAudioPlayer extends StatefulWidget {
   final String totalDuration;
   final ValueChanged<double>? onSeek;
 
-  const AppAudioPlayer({
-    super.key,
-    this.totalDuration = '11:45',
-    this.onSeek,
-  });
+  const AppAudioPlayer({super.key, this.totalDuration = '11:45', this.onSeek});
 
   @override
   State<AppAudioPlayer> createState() => _AppAudioPlayerState();
@@ -75,8 +71,12 @@ class _AppAudioPlayerState extends State<AppAudioPlayer> {
                     inactiveTrackColor: AppColors.deepJade.withOpacity(0.18),
                     thumbColor: AppColors.deepJade,
                     trackHeight: 3.5,
-                    thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 6),
-                    overlayShape: const RoundSliderOverlayShape(overlayRadius: 12),
+                    thumbShape: const RoundSliderThumbShape(
+                      enabledThumbRadius: 6,
+                    ),
+                    overlayShape: const RoundSliderOverlayShape(
+                      overlayRadius: 12,
+                    ),
                   ),
                   child: Slider(
                     value: _currentSeconds,
@@ -93,9 +93,7 @@ class _AppAudioPlayerState extends State<AppAudioPlayer> {
               ),
               Text(
                 widget.totalDuration,
-                style: AppTypography.metadata.copyWith(
-                  color: AppColors.slate,
-                ),
+                style: AppTypography.metadata.copyWith(color: AppColors.slate),
               ),
             ],
           ),
@@ -104,4 +102,3 @@ class _AppAudioPlayerState extends State<AppAudioPlayer> {
     );
   }
 }
-

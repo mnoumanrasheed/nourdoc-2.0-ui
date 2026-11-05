@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_shadows.dart';
-import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_models.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_shadows.dart';
+import '../theme/app_typography.dart';
+import '../models/mock/mock_models.dart';
 import 'clinical_badges.dart';
 
 class PatientCard extends StatelessWidget {
@@ -55,10 +55,7 @@ class PatientCard extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            patient.name,
-                            style: AppTypography.cardTitle,
-                          ),
+                          Text(patient.name, style: AppTypography.cardTitle),
                           const SizedBox(height: 2),
                           Text(
                             '${patient.id} • ${patient.age}y • ${patient.gender}',
@@ -67,12 +64,18 @@ class PatientCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    CareSettingBadge(setting: patient.careSetting, compact: true),
+                    CareSettingBadge(
+                      setting: patient.careSetting,
+                      compact: true,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 12),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.clinicalMist,
                     borderRadius: AppRadius.smBorder,
@@ -83,7 +86,9 @@ class PatientCard extends StatelessWidget {
                       Flexible(
                         child: Text(
                           'Last Seen: ${patient.lastSeen}',
-                          style: AppTypography.caption.copyWith(fontWeight: FontWeight.w500),
+                          style: AppTypography.caption.copyWith(
+                            fontWeight: FontWeight.w500,
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -115,7 +120,9 @@ class PatientCard extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             minimumSize: const Size.fromHeight(38),
                             side: const BorderSide(color: AppColors.border),
-                            shape: RoundedRectangleBorder(borderRadius: AppRadius.smBorder),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: AppRadius.smBorder,
+                            ),
                           ),
                           child: Text(
                             'View Record',
@@ -134,7 +141,9 @@ class PatientCard extends StatelessWidget {
                             backgroundColor: AppColors.deepJade,
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             minimumSize: const Size.fromHeight(38),
-                            shape: RoundedRectangleBorder(borderRadius: AppRadius.smBorder),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: AppRadius.smBorder,
+                            ),
                           ),
                           child: Text(
                             'Start Encounter',
@@ -156,4 +165,3 @@ class PatientCard extends StatelessWidget {
     );
   }
 }
-

@@ -3,10 +3,10 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/clinical_badges.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/clinical_badges.dart';
 import '../../app/routes/app_routes.dart';
 
 class PatientProfileScreen extends StatefulWidget {
@@ -43,10 +43,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
       appBar: AppBar(
         title: Text('Patient Profile', style: AppTypography.cardTitle),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.share_outlined),
-            onPressed: () {},
-          ),
+          IconButton(icon: const Icon(Icons.share_outlined), onPressed: () {}),
         ],
       ),
       body: SafeArea(
@@ -83,8 +80,16 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(_patient.name, style: AppTypography.cardTitle.copyWith(fontSize: 18)),
-                                CareSettingBadge(setting: _patient.careSetting, compact: true),
+                                Text(
+                                  _patient.name,
+                                  style: AppTypography.cardTitle.copyWith(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                CareSettingBadge(
+                                  setting: _patient.careSetting,
+                                  compact: true,
+                                ),
                               ],
                             ),
                             const SizedBox(height: 4),
@@ -95,9 +100,16 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                             const SizedBox(height: 4),
                             Row(
                               children: [
-                                const Icon(Icons.phone_outlined, size: 14, color: AppColors.slate),
+                                const Icon(
+                                  Icons.phone_outlined,
+                                  size: 14,
+                                  color: AppColors.slate,
+                                ),
                                 const SizedBox(width: 4),
-                                Text(_patient.phone, style: AppTypography.caption),
+                                Text(
+                                  _patient.phone,
+                                  style: AppTypography.caption,
+                                ),
                               ],
                             ),
                           ],
@@ -110,10 +122,9 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                     label: 'Start New Clinical Encounter',
                     icon: Icons.add_circle_outline,
                     onPressed: () {
-                      Navigator.of(context).pushNamed(
-                        AppRoutes.careSetting,
-                        arguments: _patient,
-                      );
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.careSetting, arguments: _patient);
                     },
                   ),
                 ],
@@ -128,7 +139,9 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                 indicatorColor: AppColors.deepJade,
                 labelColor: AppColors.deepJade,
                 unselectedLabelColor: AppColors.slate,
-                labelStyle: AppTypography.metadata.copyWith(fontWeight: FontWeight.w700),
+                labelStyle: AppTypography.metadata.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
                 unselectedLabelStyle: AppTypography.metadata,
                 tabs: const [
                   Tab(text: 'Overview'),
@@ -164,10 +177,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
         // Chief Complaint
         _buildSectionCard(
           title: 'Active Chief Complaint',
-          child: Text(
-            _patient.chiefComplaint,
-            style: AppTypography.body,
-          ),
+          child: Text(_patient.chiefComplaint, style: AppTypography.body),
         ),
         const SizedBox(height: 14),
 
@@ -182,10 +192,26 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
             children: [
-              _buildVitalTile('Blood Pressure', _patient.vitals.bloodPressure, Icons.favorite_border),
-              _buildVitalTile('Heart Rate', _patient.vitals.pulse, Icons.monitor_heart_outlined),
-              _buildVitalTile('Temperature', _patient.vitals.temperature, Icons.thermostat_outlined),
-              _buildVitalTile('Respiration', _patient.vitals.respiration, Icons.air_outlined),
+              _buildVitalTile(
+                'Blood Pressure',
+                _patient.vitals.bloodPressure,
+                Icons.favorite_border,
+              ),
+              _buildVitalTile(
+                'Heart Rate',
+                _patient.vitals.pulse,
+                Icons.monitor_heart_outlined,
+              ),
+              _buildVitalTile(
+                'Temperature',
+                _patient.vitals.temperature,
+                Icons.thermostat_outlined,
+              ),
+              _buildVitalTile(
+                'Respiration',
+                _patient.vitals.respiration,
+                Icons.air_outlined,
+              ),
             ],
           ),
         ),
@@ -196,11 +222,20 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
           title: 'Active Medications',
           child: Column(
             children: const [
-              _MedicationRow(name: 'Lisinopril 10mg', dose: '1 tablet PO daily (Hypertension)'),
+              _MedicationRow(
+                name: 'Lisinopril 10mg',
+                dose: '1 tablet PO daily (Hypertension)',
+              ),
               Divider(height: 16),
-              _MedicationRow(name: 'Albuterol HFA Inhaler', dose: '1-2 puffs q4-6h PRN dyspnea'),
+              _MedicationRow(
+                name: 'Albuterol HFA Inhaler',
+                dose: '1-2 puffs q4-6h PRN dyspnea',
+              ),
               Divider(height: 16),
-              _MedicationRow(name: 'Atorvastatin 20mg', dose: '1 tablet PO at bedtime'),
+              _MedicationRow(
+                name: 'Atorvastatin 20mg',
+                dose: '1 tablet PO at bedtime',
+              ),
             ],
           ),
         ),
@@ -231,7 +266,10 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
           child: Row(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.roseLight,
                   borderRadius: AppRadius.smBorder,
@@ -274,23 +312,38 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                   color: AppColors.paleJade,
                   borderRadius: AppRadius.smBorder,
                 ),
-                child: const Icon(Icons.description_outlined, color: AppColors.deepJade),
+                child: const Icon(
+                  Icons.description_outlined,
+                  color: AppColors.deepJade,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(c.primaryDiagnosis, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                    Text(
+                      c.primaryDiagnosis,
+                      style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                    ),
                     const SizedBox(height: 4),
-                    Text('${c.dateTime} • ${c.duration}', style: AppTypography.caption),
+                    Text(
+                      '${c.dateTime} • ${c.duration}',
+                      style: AppTypography.caption,
+                    ),
                   ],
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.arrow_forward_ios, size: 16, color: AppColors.slate),
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: AppColors.slate,
+                ),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.reportOverview, arguments: c);
+                  Navigator.of(
+                    context,
+                  ).pushNamed(AppRoutes.reportOverview, arguments: c);
                 },
               ),
             ],
@@ -302,10 +355,26 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
 
   Widget _buildTimelineTab() {
     final events = [
-      {'date': 'Today, 10:30 AM', 'title': 'Follow-up Consultation', 'dept': 'OPD - Bronchitis'},
-      {'date': 'Oct 02, 2026', 'title': 'Routine Lab Panel Completed', 'dept': 'Pathology - CBC, Electrolytes'},
-      {'date': 'Sep 25, 2026', 'title': 'Prescription Refilled', 'dept': 'Pharmacy - Lisinopril 10mg'},
-      {'date': 'Aug 14, 2026', 'title': 'Initial Clinical Encounter', 'dept': 'OPD - Dr. Nouman'},
+      {
+        'date': 'Today, 10:30 AM',
+        'title': 'Follow-up Consultation',
+        'dept': 'OPD - Bronchitis',
+      },
+      {
+        'date': 'Oct 02, 2026',
+        'title': 'Routine Lab Panel Completed',
+        'dept': 'Pathology - CBC, Electrolytes',
+      },
+      {
+        'date': 'Sep 25, 2026',
+        'title': 'Prescription Refilled',
+        'dept': 'Pharmacy - Lisinopril 10mg',
+      },
+      {
+        'date': 'Aug 14, 2026',
+        'title': 'Initial Clinical Encounter',
+        'dept': 'OPD - Dr. Nouman',
+      },
     ];
 
     return ListView.builder(
@@ -327,11 +396,7 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                   ),
                 ),
                 if (index < events.length - 1)
-                  Container(
-                    width: 2,
-                    height: 54,
-                    color: AppColors.border,
-                  ),
+                  Container(width: 2, height: 54, color: AppColors.border),
               ],
             ),
             const SizedBox(width: 14),
@@ -341,13 +406,19 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(ev['title']!, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                    Text(
+                      ev['title']!,
+                      style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                    ),
                     const SizedBox(height: 2),
                     Text(ev['dept']!, style: AppTypography.caption),
                     const SizedBox(height: 2),
                     Text(
                       ev['date']!,
-                      style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.w600),
+                      style: AppTypography.caption.copyWith(
+                        color: AppColors.deepJade,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),
@@ -395,7 +466,12 @@ class _PatientProfileScreenState extends State<PatientProfileScreen>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(label, style: AppTypography.caption),
-                Text(value, style: AppTypography.metadata.copyWith(fontWeight: FontWeight.w700)),
+                Text(
+                  value,
+                  style: AppTypography.metadata.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ],
             ),
           ),
@@ -415,7 +491,11 @@ class _MedicationRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(Icons.medication_outlined, size: 20, color: AppColors.deepJade),
+        const Icon(
+          Icons.medication_outlined,
+          size: 20,
+          color: AppColors.deepJade,
+        ),
         const SizedBox(width: 10),
         Expanded(
           child: Column(
@@ -430,4 +510,3 @@ class _MedicationRow extends StatelessWidget {
     );
   }
 }
-

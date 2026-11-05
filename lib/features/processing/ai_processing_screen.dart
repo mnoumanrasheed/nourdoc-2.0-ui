@@ -4,8 +4,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/organic_waveform.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/organic_waveform.dart';
 import '../../app/routes/app_routes.dart';
 
 class AiProcessingScreen extends StatefulWidget {
@@ -60,7 +60,10 @@ class _AiProcessingScreenState extends State<AiProcessingScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Clinical Intelligence Engine', style: AppTypography.cardTitle),
+        title: Text(
+          'Clinical Intelligence Engine',
+          style: AppTypography.cardTitle,
+        ),
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(
@@ -89,7 +92,10 @@ class _AiProcessingScreenState extends State<AiProcessingScreen> {
               Text(
                 'Synthesizing clinical evidence, diagnostic reasoning, and medical coding.',
                 textAlign: TextAlign.center,
-                style: AppTypography.body.copyWith(color: AppColors.slate, fontSize: 13),
+                style: AppTypography.body.copyWith(
+                  color: AppColors.slate,
+                  fontSize: 13,
+                ),
               ),
               const SizedBox(height: 20),
 
@@ -98,7 +104,8 @@ class _AiProcessingScreenState extends State<AiProcessingScreen> {
                 child: ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   itemCount: _stages.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 10),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 10),
                   itemBuilder: (context, index) {
                     final isComplete = index < _activeStage || isDone;
                     final isCurrent = index == _activeStage && !isDone;
@@ -106,7 +113,11 @@ class _AiProcessingScreenState extends State<AiProcessingScreen> {
                     Widget leadingIcon;
 
                     if (isComplete) {
-                      leadingIcon = const Icon(Icons.check_circle, size: 20, color: AppColors.deepJade);
+                      leadingIcon = const Icon(
+                        Icons.check_circle,
+                        size: 20,
+                        color: AppColors.deepJade,
+                      );
                     } else if (isCurrent) {
                       leadingIcon = const SizedBox(
                         width: 18,
@@ -117,21 +128,32 @@ class _AiProcessingScreenState extends State<AiProcessingScreen> {
                         ),
                       );
                     } else {
-                      leadingIcon = Icon(Icons.radio_button_unchecked, size: 20, color: Colors.grey.shade400);
+                      leadingIcon = Icon(
+                        Icons.radio_button_unchecked,
+                        size: 20,
+                        color: Colors.grey.shade400,
+                      );
                     }
 
                     return AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
                         color: isCurrent
                             ? AppColors.paleJade.withOpacity(0.5)
-                            : (isComplete ? AppColors.clinicalMist : Colors.white),
+                            : (isComplete
+                                  ? AppColors.clinicalMist
+                                  : Colors.white),
                         borderRadius: AppRadius.smBorder,
                         border: Border.all(
                           color: isCurrent
                               ? AppColors.deepJade.withOpacity(0.4)
-                              : (isComplete ? AppColors.borderLight : AppColors.border),
+                              : (isComplete
+                                    ? AppColors.borderLight
+                                    : AppColors.border),
                         ),
                       ),
                       child: Row(
@@ -145,8 +167,12 @@ class _AiProcessingScreenState extends State<AiProcessingScreen> {
                                 fontSize: 13,
                                 color: isComplete
                                     ? AppColors.charcoal
-                                    : (isCurrent ? AppColors.deepJade : AppColors.slateLight),
-                                fontWeight: isCurrent ? FontWeight.w700 : FontWeight.w500,
+                                    : (isCurrent
+                                          ? AppColors.deepJade
+                                          : AppColors.slateLight),
+                                fontWeight: isCurrent
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
                               ),
                             ),
                           ),
@@ -165,7 +191,9 @@ class _AiProcessingScreenState extends State<AiProcessingScreen> {
                 icon: isDone ? Icons.arrow_forward : null,
                 onPressed: isDone
                     ? () {
-                        Navigator.of(context).pushReplacementNamed(AppRoutes.reportOverview);
+                        Navigator.of(
+                          context,
+                        ).pushReplacementNamed(AppRoutes.reportOverview);
                       }
                     : null,
               ),

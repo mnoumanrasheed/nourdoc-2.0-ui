@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_shadows.dart';
-import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_models.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_shadows.dart';
+import '../theme/app_typography.dart';
+import '../models/mock/mock_models.dart';
 import 'clinical_badges.dart';
 
 class NeedsAttentionCard extends StatelessWidget {
@@ -53,13 +53,13 @@ class NeedsAttentionCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Left accent bar matching Figma
-                Container(
-                  width: 4.5,
-                  color: accentColor,
-                ),
+                Container(width: 4.5, color: accentColor),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 12,
+                    ),
                     child: Row(
                       children: [
                         // Leading circular icon
@@ -70,7 +70,11 @@ class NeedsAttentionCard extends StatelessWidget {
                             color: accentColor.withValues(alpha: 0.12),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(leadingIcon, color: accentColor, size: 20),
+                          child: Icon(
+                            leadingIcon,
+                            color: accentColor,
+                            size: 20,
+                          ),
                         ),
                         const SizedBox(width: 12),
                         // Patient details & badge
@@ -80,7 +84,10 @@ class NeedsAttentionCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2.5,
+                                ),
                                 decoration: BoxDecoration(
                                   color: accentColor.withValues(alpha: 0.12),
                                   borderRadius: AppRadius.xsBorder,
@@ -98,7 +105,9 @@ class NeedsAttentionCard extends StatelessWidget {
                               const SizedBox(height: 5),
                               Text(
                                 consultation.patientName,
-                                style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                                style: AppTypography.cardTitle.copyWith(
+                                  fontSize: 15,
+                                ),
                               ),
                               const SizedBox(height: 2),
                               Text(
@@ -114,7 +123,11 @@ class NeedsAttentionCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        const Icon(Icons.chevron_right, color: AppColors.slateLight, size: 20),
+                        const Icon(
+                          Icons.chevron_right,
+                          color: AppColors.slateLight,
+                          size: 20,
+                        ),
                       ],
                     ),
                   ),
@@ -228,7 +241,11 @@ class EncounterCard extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.schedule, size: 12, color: AppColors.slateLight),
+                        const Icon(
+                          Icons.schedule,
+                          size: 12,
+                          color: AppColors.slateLight,
+                        ),
                         const SizedBox(width: 3),
                         Text(
                           consultation.duration,
@@ -240,7 +257,11 @@ class EncounterCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 6),
-                    const Icon(Icons.chevron_right, color: AppColors.slateLight, size: 18),
+                    const Icon(
+                      Icons.chevron_right,
+                      color: AppColors.slateLight,
+                      size: 18,
+                    ),
                   ],
                 ),
               ],

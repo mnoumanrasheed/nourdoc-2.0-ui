@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_typography.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_typography.dart';
 
 class AppTextField extends StatelessWidget {
   final String? label;
@@ -56,7 +56,10 @@ class AppTextField extends StatelessWidget {
             fillColor: Colors.white,
             filled: true,
             isDense: true,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 14,
+              vertical: 12,
+            ),
             border: OutlineInputBorder(
               borderRadius: AppRadius.smBorder,
               borderSide: const BorderSide(color: AppColors.border),
@@ -67,7 +70,10 @@ class AppTextField extends StatelessWidget {
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: AppRadius.smBorder,
-              borderSide: const BorderSide(color: AppColors.deepJade, width: 1.5),
+              borderSide: const BorderSide(
+                color: AppColors.deepJade,
+                width: 1.5,
+              ),
             ),
           ),
         ),
@@ -75,4 +81,3 @@ class AppTextField extends StatelessWidget {
     );
   }
 }
-

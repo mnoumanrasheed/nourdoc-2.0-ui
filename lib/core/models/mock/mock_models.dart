@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 
 enum CareSetting {
   emergency('Emergency', AppColors.emergency, Icons.emergency_outlined),
@@ -74,7 +74,8 @@ class MockPatient {
     required this.totalConsultations,
     required this.careSetting,
     required this.vitals,
-    this.chiefComplaint = 'Persistent dry cough and shortness of breath for 5 days',
+    this.chiefComplaint =
+        'Persistent dry cough and shortness of breath for 5 days',
   });
 }
 
@@ -110,7 +111,8 @@ class MockCoding {
 
 class MockEvidence {
   final String id;
-  final String type; // 'Patient Evidence', 'External Reference', 'AI Interpretation'
+  final String
+  type; // 'Patient Evidence', 'External Reference', 'AI Interpretation'
   final String text;
   final String timestamp;
   final String speaker;
@@ -243,4 +245,3 @@ class MockInvoice {
     required this.method,
   });
 }
-

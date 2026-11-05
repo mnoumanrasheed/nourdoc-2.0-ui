@@ -3,9 +3,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class FinalClinicalReviewScreen extends StatefulWidget {
@@ -14,7 +14,8 @@ class FinalClinicalReviewScreen extends StatefulWidget {
   const FinalClinicalReviewScreen({super.key, this.consultation});
 
   @override
-  State<FinalClinicalReviewScreen> createState() => _FinalClinicalReviewScreenState();
+  State<FinalClinicalReviewScreen> createState() =>
+      _FinalClinicalReviewScreenState();
 }
 
 class _FinalClinicalReviewScreenState extends State<FinalClinicalReviewScreen> {
@@ -58,18 +59,35 @@ class _FinalClinicalReviewScreenState extends State<FinalClinicalReviewScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(c.patientName, style: AppTypography.cardTitle.copyWith(fontSize: 16)),
-                              Text(c.id, style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.bold)),
+                              Text(
+                                c.patientName,
+                                style: AppTypography.cardTitle.copyWith(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                c.id,
+                                style: AppTypography.caption.copyWith(
+                                  color: AppColors.deepJade,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ],
                           ),
                           const SizedBox(height: 4),
-                          Text('${c.patientAge}y ${c.patientGender} • ${c.careSetting.label} • ${c.primaryDiagnosis}', style: AppTypography.caption),
+                          Text(
+                            '${c.patientAge}y ${c.patientGender} • ${c.careSetting.label} • ${c.primaryDiagnosis}',
+                            style: AppTypography.caption,
+                          ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 20),
 
-                    Text('Clinician Attestation Checklist', style: AppTypography.sectionTitle.copyWith(fontSize: 16)),
+                    Text(
+                      'Clinician Attestation Checklist',
+                      style: AppTypography.sectionTitle.copyWith(fontSize: 16),
+                    ),
                     const SizedBox(height: 8),
                     Text(
                       'Verify each section to complete medical documentation and dispatch to EHR repository.',
@@ -80,40 +98,48 @@ class _FinalClinicalReviewScreenState extends State<FinalClinicalReviewScreen> {
                     // Section 1: SOAP Documentation
                     _buildCheckCard(
                       title: 'Clinical SOAP Note Approved',
-                      subtitle: 'Subjective, Objective, Assessment, and Plan reviewed for clinical fidelity.',
+                      subtitle:
+                          'Subjective, Objective, Assessment, and Plan reviewed for clinical fidelity.',
                       icon: Icons.notes_outlined,
                       value: _isSoapApproved,
-                      onChanged: (v) => setState(() => _isSoapApproved = v ?? false),
+                      onChanged: (v) =>
+                          setState(() => _isSoapApproved = v ?? false),
                     ),
                     const SizedBox(height: 12),
 
                     // Section 2: Medical Coding
                     _buildCheckCard(
                       title: 'ICD-10 & CPT Billing Codes Confirmed',
-                      subtitle: '${c.codings.length} diagnostic and procedural codes confirmed under practitioner license.',
+                      subtitle:
+                          '${c.codings.length} diagnostic and procedural codes confirmed under practitioner license.',
                       icon: Icons.receipt_long_outlined,
                       value: _isCodingConfirmed,
-                      onChanged: (v) => setState(() => _isCodingConfirmed = v ?? false),
+                      onChanged: (v) =>
+                          setState(() => _isCodingConfirmed = v ?? false),
                     ),
                     const SizedBox(height: 12),
 
                     // Section 3: Clinical Risk
                     _buildCheckCard(
                       title: 'AI Clinical Risk Signals Addressed',
-                      subtitle: 'Potential drug interactions and follow-up flags reviewed.',
+                      subtitle:
+                          'Potential drug interactions and follow-up flags reviewed.',
                       icon: Icons.warning_amber_rounded,
                       value: _isRiskReviewed,
-                      onChanged: (v) => setState(() => _isRiskReviewed = v ?? false),
+                      onChanged: (v) =>
+                          setState(() => _isRiskReviewed = v ?? false),
                     ),
                     const SizedBox(height: 12),
 
                     // Section 4: Traceable Evidence
                     _buildCheckCard(
                       title: 'Clinical Evidence Alignment Validated',
-                      subtitle: 'Dialogue statements corroborated with objective exam findings.',
+                      subtitle:
+                          'Dialogue statements corroborated with objective exam findings.',
                       icon: Icons.search_outlined,
                       value: _isEvidenceVerified,
-                      onChanged: (v) => setState(() => _isEvidenceVerified = v ?? false),
+                      onChanged: (v) =>
+                          setState(() => _isEvidenceVerified = v ?? false),
                     ),
                     const SizedBox(height: 24),
                   ],
@@ -133,11 +159,16 @@ class _FinalClinicalReviewScreenState extends State<FinalClinicalReviewScreen> {
                     setState(() => _isSubmitting = false);
                     messenger.showSnackBar(
                       const SnackBar(
-                        content: Text('Encounter successfully signed off and stored in clinical registry.'),
+                        content: Text(
+                          'Encounter successfully signed off and stored in clinical registry.',
+                        ),
                         backgroundColor: AppColors.deepJade,
                       ),
                     );
-                    navigator.pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+                    navigator.pushNamedAndRemoveUntil(
+                      AppRoutes.mainNav,
+                      (r) => false,
+                    );
                   });
                 },
               ),
@@ -169,7 +200,10 @@ class _FinalClinicalReviewScreenState extends State<FinalClinicalReviewScreen> {
         value: value,
         onChanged: onChanged,
         activeColor: AppColors.deepJade,
-        title: Text(title, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+        title: Text(
+          title,
+          style: AppTypography.cardTitle.copyWith(fontSize: 14),
+        ),
         subtitle: Text(subtitle, style: AppTypography.caption),
         secondary: Container(
           padding: const EdgeInsets.all(8),

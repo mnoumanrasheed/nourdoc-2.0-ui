@@ -3,10 +3,10 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/clinical_badges.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/clinical_badges.dart';
 import '../../app/routes/app_routes.dart';
 
 class RecordingPausedScreen extends StatelessWidget {
@@ -47,7 +47,9 @@ class RecordingPausedScreen extends StatelessWidget {
                         children: [
                           Text(
                             patient.name,
-                            style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 15,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 2),
@@ -72,9 +74,16 @@ class RecordingPausedScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: AppColors.amberLight,
                   shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.warmAmber.withOpacity(0.4), width: 2),
+                  border: Border.all(
+                    color: AppColors.warmAmber.withOpacity(0.4),
+                    width: 2,
+                  ),
                 ),
-                child: const Icon(Icons.pause, size: 44, color: AppColors.warmAmber),
+                child: const Icon(
+                  Icons.pause,
+                  size: 44,
+                  color: AppColors.warmAmber,
+                ),
               ),
               const SizedBox(height: 24),
 
@@ -103,7 +112,9 @@ class RecordingPausedScreen extends StatelessWidget {
                 label: 'Resume Recording',
                 icon: Icons.play_arrow,
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.recordingInProgress);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.recordingInProgress);
                 },
               ),
               const SizedBox(height: 12),
@@ -112,15 +123,22 @@ class RecordingPausedScreen extends StatelessWidget {
                 variant: ButtonVariant.secondary,
                 icon: Icons.check_circle_outline,
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.consultationSubmitted);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.consultationSubmitted);
                 },
               ),
               const SizedBox(height: 12),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
                 },
-                child: Text('Discard Encounter', style: AppTypography.metadata.copyWith(color: AppColors.rose)),
+                child: Text(
+                  'Discard Encounter',
+                  style: AppTypography.metadata.copyWith(color: AppColors.rose),
+                ),
               ),
               const SizedBox(height: 12),
             ],
@@ -130,4 +148,3 @@ class RecordingPausedScreen extends StatelessWidget {
     );
   }
 }
-

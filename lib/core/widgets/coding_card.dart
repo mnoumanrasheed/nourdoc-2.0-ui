@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_shadows.dart';
-import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_models.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_shadows.dart';
+import '../theme/app_typography.dart';
+import '../models/mock/mock_models.dart';
 import 'clinical_badges.dart';
 
 class CodingCard extends StatelessWidget {
@@ -42,7 +42,10 @@ class CodingCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 4,
+                      ),
                       decoration: BoxDecoration(
                         color: badgeColor.withOpacity(0.12),
                         borderRadius: AppRadius.xsBorder,
@@ -86,9 +89,13 @@ class CodingCard extends StatelessWidget {
             children: [
               Flexible(
                 child: Text(
-                  coding.isConfirmed ? 'Clinician Confirmed' : 'Suggested by AI',
+                  coding.isConfirmed
+                      ? 'Clinician Confirmed'
+                      : 'Suggested by AI',
                   style: AppTypography.caption.copyWith(
-                    color: coding.isConfirmed ? AppColors.deepJade : AppColors.slate,
+                    color: coding.isConfirmed
+                        ? AppColors.deepJade
+                        : AppColors.slate,
                     fontWeight: FontWeight.w600,
                   ),
                   maxLines: 1,
@@ -99,7 +106,9 @@ class CodingCard extends StatelessWidget {
               OutlinedButton.icon(
                 onPressed: onToggleConfirm,
                 icon: Icon(
-                  coding.isConfirmed ? Icons.check_circle : Icons.check_circle_outline,
+                  coding.isConfirmed
+                      ? Icons.check_circle
+                      : Icons.check_circle_outline,
                   size: 16,
                   color: coding.isConfirmed ? Colors.white : AppColors.deepJade,
                 ),
@@ -107,17 +116,28 @@ class CodingCard extends StatelessWidget {
                   coding.isConfirmed ? 'Confirmed' : 'Confirm Code',
                   style: AppTypography.caption.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: coding.isConfirmed ? Colors.white : AppColors.deepJade,
+                    color: coding.isConfirmed
+                        ? Colors.white
+                        : AppColors.deepJade,
                   ),
                 ),
                 style: OutlinedButton.styleFrom(
-                  backgroundColor: coding.isConfirmed ? AppColors.deepJade : Colors.transparent,
+                  backgroundColor: coding.isConfirmed
+                      ? AppColors.deepJade
+                      : Colors.transparent,
                   side: BorderSide(
-                    color: coding.isConfirmed ? AppColors.deepJade : AppColors.deepJade.withOpacity(0.5),
+                    color: coding.isConfirmed
+                        ? AppColors.deepJade
+                        : AppColors.deepJade.withOpacity(0.5),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
                   minimumSize: const Size(0, 32),
-                  shape: RoundedRectangleBorder(borderRadius: AppRadius.smBorder),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: AppRadius.smBorder,
+                  ),
                 ),
               ),
             ],
@@ -127,4 +147,3 @@ class CodingCard extends StatelessWidget {
     );
   }
 }
-

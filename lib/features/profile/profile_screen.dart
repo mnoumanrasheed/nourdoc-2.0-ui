@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/brand_logo.dart';
+import '../../core/widgets/brand_logo.dart';
 import '../../app/routes/app_routes.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -53,16 +53,31 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text('Dr. Muhammad Nouman, MD', style: AppTypography.cardTitle.copyWith(fontSize: 18)),
+                  Text(
+                    'Dr. Muhammad Nouman, MD',
+                    style: AppTypography.cardTitle.copyWith(fontSize: 18),
+                  ),
                   const SizedBox(height: 4),
-                  Text('Internal Medicine Specialist', style: AppTypography.metadata.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.w600)),
+                  Text(
+                    'Internal Medicine Specialist',
+                    style: AppTypography.metadata.copyWith(
+                      color: AppColors.deepJade,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   const SizedBox(height: 2),
-                  Text('Central Teaching Hospital • PMDC: PMC-92810-A', style: AppTypography.caption),
+                  Text(
+                    'Central Teaching Hospital • PMDC: PMC-92810-A',
+                    style: AppTypography.caption,
+                  ),
                   const SizedBox(height: 16),
 
                   // Subscription Status Badge inside Profile
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 8,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.paleJade,
                       borderRadius: AppRadius.smBorder,
@@ -72,14 +87,26 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(Icons.verified, size: 16, color: AppColors.deepJade),
+                            const Icon(
+                              Icons.verified,
+                              size: 16,
+                              color: AppColors.deepJade,
+                            ),
                             const SizedBox(width: 8),
-                            Text('Professional Workspace', style: AppTypography.caption.copyWith(fontWeight: FontWeight.bold, color: AppColors.deepJade)),
+                            Text(
+                              'Professional Workspace',
+                              style: AppTypography.caption.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.deepJade,
+                              ),
+                            ),
                           ],
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).pushNamed(AppRoutes.mySubscription);
+                            Navigator.of(
+                              context,
+                            ).pushNamed(AppRoutes.mySubscription);
                           },
                           child: Text(
                             'Manage',
@@ -106,7 +133,8 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.history_edu_outlined,
                 title: 'Previous Clinical Reports',
                 subtitle: 'Archive of past consultations and sign-offs',
-                onTap: () => Navigator.of(context).pushNamed(AppRoutes.previousReports),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.previousReports),
               ),
               _buildTile(
                 icon: Icons.star_outline,
@@ -118,13 +146,15 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.receipt_long_outlined,
                 title: 'Billing & Invoices',
                 subtitle: 'Receipts, tax records, and payment options',
-                onTap: () => Navigator.of(context).pushNamed(AppRoutes.invoiceHistory),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.invoiceHistory),
               ),
               _buildTile(
                 icon: Icons.speed_outlined,
                 title: 'Encounter Usage & Limits',
                 subtitle: 'Resource quota and monthly encounters',
-                onTap: () => Navigator.of(context).pushNamed(AppRoutes.usageLimits),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.usageLimits),
               ),
             ]),
             const SizedBox(height: 16),
@@ -137,25 +167,32 @@ class ProfileScreen extends StatelessWidget {
                 icon: Icons.notifications_none_outlined,
                 title: 'Notification Preferences',
                 subtitle: 'Risk alerts, report sign-offs, and reminders',
-                onTap: () => Navigator.of(context).pushNamed(AppRoutes.notificationSettings),
+                onTap: () => Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.notificationSettings),
               ),
               _buildTile(
                 icon: Icons.security_outlined,
                 title: 'Clinical Security & 2FA',
                 subtitle: 'Two-factor authentication, biometric sign-in',
-                onTap: () => Navigator.of(context).pushNamed(AppRoutes.security),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.security),
               ),
               _buildTile(
                 icon: Icons.view_quilt_outlined,
                 title: 'Empty States Showcase',
                 subtitle: 'Review standardized clinical empty UI states',
-                onTap: () => Navigator.of(context).pushNamed(AppRoutes.emptyStatesShowcase),
+                onTap: () => Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.emptyStatesShowcase),
               ),
               _buildTile(
                 icon: Icons.error_outline_rounded,
                 title: 'Error States Showcase',
                 subtitle: 'Review standardized clinical error UI states',
-                onTap: () => Navigator.of(context).pushNamed(AppRoutes.errorStatesShowcase),
+                onTap: () => Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.errorStatesShowcase),
               ),
             ]),
             const SizedBox(height: 20),
@@ -169,9 +206,17 @@ class ProfileScreen extends StatelessWidget {
               ),
               child: ListTile(
                 leading: const Icon(Icons.logout, color: AppColors.rose),
-                title: Text('Sign Out of Workspace', style: AppTypography.cardTitle.copyWith(fontSize: 14, color: AppColors.rose)),
+                title: Text(
+                  'Sign Out of Workspace',
+                  style: AppTypography.cardTitle.copyWith(
+                    fontSize: 14,
+                    color: AppColors.rose,
+                  ),
+                ),
                 onTap: () {
-                  Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.signIn, (r) => false);
+                  Navigator.of(
+                    context,
+                  ).pushNamedAndRemoveUntil(AppRoutes.signIn, (r) => false);
                 },
               ),
             ),
@@ -181,7 +226,10 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   const NourDocLogo(height: 22, showText: false),
                   const SizedBox(height: 6),
-                  Text('NourDoc Intelligent Clinical Workspace v2.0.0', style: AppTypography.caption),
+                  Text(
+                    'NourDoc Intelligent Clinical Workspace v2.0.0',
+                    style: AppTypography.caption,
+                  ),
                 ],
               ),
             ),
@@ -199,9 +247,7 @@ class ProfileScreen extends StatelessWidget {
         borderRadius: AppRadius.mdBorder,
         border: Border.all(color: AppColors.border),
       ),
-      child: Column(
-        children: children,
-      ),
+      child: Column(children: children),
     );
   }
 
@@ -215,9 +261,12 @@ class ProfileScreen extends StatelessWidget {
       leading: Icon(icon, color: AppColors.deepJade, size: 22),
       title: Text(title, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
       subtitle: Text(subtitle, style: AppTypography.caption),
-      trailing: const Icon(Icons.chevron_right, size: 20, color: AppColors.slateLight),
+      trailing: const Icon(
+        Icons.chevron_right,
+        size: 20,
+        color: AppColors.slateLight,
+      ),
       onTap: onTap,
     );
   }
 }
-

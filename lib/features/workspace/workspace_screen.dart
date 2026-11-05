@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/brand_logo.dart';
-import '../../shared/widgets/encounter_card.dart';
-import '../../shared/widgets/metric_card.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/brand_logo.dart';
+import '../../core/widgets/encounter_card.dart';
+import '../../core/widgets/metric_card.dart';
 import '../../app/routes/app_routes.dart';
 
 class WorkspaceScreen extends StatefulWidget {
@@ -23,18 +23,28 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
   @override
   Widget build(BuildContext context) {
     final consultations = MockData.consultations;
-    final needsAttentionList = consultations.where((c) => c.needsAttention).toList();
+    final needsAttentionList = consultations
+        .where((c) => c.needsAttention)
+        .toList();
 
     List<MockConsultation> filteredList = consultations;
     if (_selectedFilter != 'All') {
       if (_selectedFilter == 'General OPD') {
-        filteredList = consultations.where((c) => c.careSetting == CareSetting.opd).toList();
+        filteredList = consultations
+            .where((c) => c.careSetting == CareSetting.opd)
+            .toList();
       } else if (_selectedFilter == 'ER') {
-        filteredList = consultations.where((c) => c.careSetting == CareSetting.emergency).toList();
+        filteredList = consultations
+            .where((c) => c.careSetting == CareSetting.emergency)
+            .toList();
       } else if (_selectedFilter == 'IPD') {
-        filteredList = consultations.where((c) => c.careSetting == CareSetting.ipd).toList();
+        filteredList = consultations
+            .where((c) => c.careSetting == CareSetting.ipd)
+            .toList();
       } else if (_selectedFilter == 'OT') {
-        filteredList = consultations.where((c) => c.careSetting == CareSetting.ot).toList();
+        filteredList = consultations
+            .where((c) => c.careSetting == CareSetting.ot)
+            .toList();
       }
     }
 
@@ -58,7 +68,11 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
             icon: Stack(
               clipBehavior: Clip.none,
               children: [
-                const Icon(Icons.notifications_none_outlined, size: 22, color: AppColors.charcoal),
+                const Icon(
+                  Icons.notifications_none_outlined,
+                  size: 22,
+                  color: AppColors.charcoal,
+                ),
                 Positioned(
                   top: -2,
                   right: -2,
@@ -190,7 +204,10 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
                     ),
                     const SizedBox(width: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 7,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.roseLight,
                         borderRadius: BorderRadius.circular(10),
@@ -215,10 +232,9 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
                     child: NeedsAttentionCard(
                       consultation: c,
                       onTap: () {
-                        Navigator.of(context).pushNamed(
-                          AppRoutes.consultationDetail,
-                          arguments: c,
-                        );
+                        Navigator.of(
+                          context,
+                        ).pushNamed(AppRoutes.consultationDetail, arguments: c);
                       },
                     ),
                   ),
@@ -240,7 +256,9 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushNamed(AppRoutes.consultations);
+                        Navigator.of(
+                          context,
+                        ).pushNamed(AppRoutes.consultations);
                       },
                       child: Text(
                         'See all',
@@ -268,20 +286,31 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
                           borderRadius: BorderRadius.circular(20),
                           child: AnimatedContainer(
                             duration: const Duration(milliseconds: 200),
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6.5),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 6.5,
+                            ),
                             decoration: BoxDecoration(
-                              color: isSelected ? AppColors.deepJade : Colors.white,
+                              color: isSelected
+                                  ? AppColors.deepJade
+                                  : Colors.white,
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color: isSelected ? AppColors.deepJade : AppColors.border,
+                                color: isSelected
+                                    ? AppColors.deepJade
+                                    : AppColors.border,
                                 width: 1,
                               ),
                             ),
                             child: Text(
                               filter,
                               style: AppTypography.caption.copyWith(
-                                color: isSelected ? Colors.white : AppColors.slate,
-                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                                color: isSelected
+                                    ? Colors.white
+                                    : AppColors.slate,
+                                fontWeight: isSelected
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
                                 fontSize: 12,
                               ),
                             ),
@@ -300,10 +329,9 @@ class _WorkspaceScreenState extends State<WorkspaceScreen> {
                     child: EncounterCard(
                       consultation: c,
                       onTap: () {
-                        Navigator.of(context).pushNamed(
-                          AppRoutes.consultationDetail,
-                          arguments: c,
-                        );
+                        Navigator.of(
+                          context,
+                        ).pushNamed(AppRoutes.consultationDetail, arguments: c);
                       },
                     ),
                   ),

@@ -3,9 +3,9 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/coding_card.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/coding_card.dart';
 
 class PatientReportCodingScreen extends StatefulWidget {
   final MockConsultation? consultation;
@@ -13,7 +13,8 @@ class PatientReportCodingScreen extends StatefulWidget {
   const PatientReportCodingScreen({super.key, this.consultation});
 
   @override
-  State<PatientReportCodingScreen> createState() => _PatientReportCodingScreenState();
+  State<PatientReportCodingScreen> createState() =>
+      _PatientReportCodingScreenState();
 }
 
 class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
@@ -47,7 +48,10 @@ class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Medical Coding (ICD-10 & CPT)', style: AppTypography.cardTitle),
+        title: Text(
+          'Medical Coding (ICD-10 & CPT)',
+          style: AppTypography.cardTitle,
+        ),
       ),
       body: SafeArea(
         child: ListView(
@@ -66,12 +70,19 @@ class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.verified_user_outlined, color: AppColors.deepJade, size: 22),
+                  const Icon(
+                    Icons.verified_user_outlined,
+                    color: AppColors.deepJade,
+                    size: 22,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'Clinician Oversight: All suggested diagnostic (ICD-10) and procedural (CPT) codes require clinician confirmation prior to EHR billing dispatch.',
-                      style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.w600),
+                      style: AppTypography.caption.copyWith(
+                        color: AppColors.deepJade,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],
@@ -82,11 +93,7 @@ class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
             // ICD-10 Section
             Row(
               children: [
-                Container(
-                  width: 4,
-                  height: 16,
-                  color: AppColors.deepJade,
-                ),
+                Container(width: 4, height: 16, color: AppColors.deepJade),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -113,11 +120,7 @@ class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
             // CPT Section
             Row(
               children: [
-                Container(
-                  width: 4,
-                  height: 16,
-                  color: AppColors.indigo,
-                ),
+                Container(width: 4, height: 16, color: AppColors.indigo),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -146,4 +149,3 @@ class _PatientReportCodingScreenState extends State<PatientReportCodingScreen> {
     );
   }
 }
-

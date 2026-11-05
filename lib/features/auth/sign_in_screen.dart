@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/brand_logo.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/app_text_field.dart';
+import '../../core/widgets/brand_logo.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_text_field.dart';
 import '../../app/routes/app_routes.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -15,7 +15,9 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  final _emailController = TextEditingController(text: 'dr.nouman@nourdoc.health');
+  final _emailController = TextEditingController(
+    text: 'dr.nouman@nourdoc.health',
+  );
   final _passwordController = TextEditingController(text: '••••••••••••');
   bool _obscurePassword = true;
   bool _isLoading = false;
@@ -49,17 +51,16 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.screenHorizontal,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
               const Center(child: NourDocLogo(height: 44)),
               const SizedBox(height: 32),
-              Text(
-                'Welcome Back, Doctor',
-                style: AppTypography.pageTitle,
-              ),
+              Text('Welcome Back, Doctor', style: AppTypography.pageTitle),
               const SizedBox(height: 8),
               Text(
                 'Sign in to access your intelligent clinical workspace and patient encounters.',
@@ -71,7 +72,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 hintText: 'doctor@hospital.org',
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                prefixIcon: const Icon(Icons.badge_outlined, color: AppColors.slate),
+                prefixIcon: const Icon(
+                  Icons.badge_outlined,
+                  color: AppColors.slate,
+                ),
               ),
               const SizedBox(height: 18),
               AppTextField(
@@ -79,13 +83,19 @@ class _SignInScreenState extends State<SignInScreen> {
                 hintText: 'Enter your password',
                 controller: _passwordController,
                 obscureText: _obscurePassword,
-                prefixIcon: const Icon(Icons.lock_outline, color: AppColors.slate),
+                prefixIcon: const Icon(
+                  Icons.lock_outline,
+                  color: AppColors.slate,
+                ),
                 suffixIcon: IconButton(
                   icon: Icon(
-                    _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                    _obscurePassword
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
                     color: AppColors.slate,
                   ),
-                  onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
+                  onPressed: () =>
+                      setState(() => _obscurePassword = !_obscurePassword),
                 ),
               ),
               const SizedBox(height: 12),
@@ -127,7 +137,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed(AppRoutes.doctorRegistration);
+                      Navigator.of(
+                        context,
+                      ).pushNamed(AppRoutes.doctorRegistration);
                     },
                     child: Text(
                       'Register Now',
@@ -147,4 +159,3 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 }
-

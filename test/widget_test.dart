@@ -22,7 +22,9 @@ import 'package:nourdoc/features/profile/settings_screen.dart';
 import 'package:nourdoc/features/workspace/empty_states_screen.dart';
 
 void main() {
-  testWidgets('NourDoc app smoke test and splash transition', (WidgetTester tester) async {
+  testWidgets('NourDoc app smoke test and splash transition', (
+    WidgetTester tester,
+  ) async {
     await tester.pumpWidget(const NourDocApp());
     expect(find.text('INTELLIGENT CLINICAL WORKSPACE'), findsOneWidget);
 
@@ -40,105 +42,124 @@ void main() {
   ];
 
   for (final size in testViewports) {
-    testWidgets('Responsive & Overflow Validation on ${size.width.toInt()}x${size.height.toInt()}', (WidgetTester tester) async {
-      tester.view.physicalSize = size;
-      tester.view.devicePixelRatio = 1.0;
-      addTearDown(tester.view.resetPhysicalSize);
-      addTearDown(tester.view.resetDevicePixelRatio);
+    testWidgets(
+      'Responsive & Overflow Validation on ${size.width.toInt()}x${size.height.toInt()}',
+      (WidgetTester tester) async {
+        tester.view.physicalSize = size;
+        tester.view.devicePixelRatio = 1.0;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
 
-      // 1. Validate Main Workspace & Nav Shell
-      await tester.pumpWidget(const MaterialApp(home: MainNavShell()));
-      await tester.pumpAndSettle();
-      expect(find.text('CLINICAL WORKSPACE'), findsOneWidget);
-      expect(find.text('Good morning, Dr. Ahmed'), findsOneWidget);
-      expect(find.text('NEEDS ATTENTION'), findsOneWidget);
-      expect(find.text("TODAY'S ENCOUNTERS"), findsOneWidget);
+        // 1. Validate Main Workspace & Nav Shell
+        await tester.pumpWidget(const MaterialApp(home: MainNavShell()));
+        await tester.pumpAndSettle();
+        expect(find.text('CLINICAL WORKSPACE'), findsOneWidget);
+        expect(find.text('Good morning, Dr. Ahmed'), findsOneWidget);
+        expect(find.text('NEEDS ATTENTION'), findsOneWidget);
+        expect(find.text("TODAY'S ENCOUNTERS"), findsOneWidget);
 
-      // Verify bottom navigation tabs
-      expect(find.text('Home'), findsOneWidget);
-      expect(find.text('Schedule'), findsOneWidget);
-      expect(find.text('Encounter'), findsOneWidget);
-      expect(find.text('Patients'), findsOneWidget);
-      expect(find.text('Profile'), findsOneWidget);
+        // Verify bottom navigation tabs
+        expect(find.text('Home'), findsOneWidget);
+        expect(find.text('Schedule'), findsOneWidget);
+        expect(find.text('Encounter'), findsOneWidget);
+        expect(find.text('Patients'), findsOneWidget);
+        expect(find.text('Profile'), findsOneWidget);
 
-      // 2. Validate Auth Screens
-      await tester.pumpWidget(const MaterialApp(home: OnboardingScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Sign In to Workspace'), findsOneWidget);
+        // 2. Validate Auth Screens
+        await tester.pumpWidget(const MaterialApp(home: OnboardingScreen()));
+        await tester.pumpAndSettle();
+        expect(find.text('Sign In to Workspace'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: SignInScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Welcome Back, Doctor'), findsOneWidget);
+        await tester.pumpWidget(const MaterialApp(home: SignInScreen()));
+        await tester.pumpAndSettle();
+        expect(find.text('Welcome Back, Doctor'), findsOneWidget);
 
-      // 3. Validate Encounter Flow
-      await tester.pumpWidget(const MaterialApp(home: SelectPatientScreen()));
-      await tester.pumpAndSettle();
-      expect(find.textContaining('Select Patient'), findsOneWidget);
+        // 3. Validate Encounter Flow
+        await tester.pumpWidget(const MaterialApp(home: SelectPatientScreen()));
+        await tester.pumpAndSettle();
+        expect(find.textContaining('Select Patient'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: CareSettingScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Where is this patient being seen?'), findsOneWidget);
+        await tester.pumpWidget(const MaterialApp(home: CareSettingScreen()));
+        await tester.pumpAndSettle();
+        expect(find.text('Where is this patient being seen?'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: PatientIntakeScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Clinical Intake & Vitals'), findsOneWidget);
+        await tester.pumpWidget(const MaterialApp(home: PatientIntakeScreen()));
+        await tester.pumpAndSettle();
+        expect(find.text('Clinical Intake & Vitals'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: ClinicalContextScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Previous Clinical Context'), findsOneWidget);
+        await tester.pumpWidget(
+          const MaterialApp(home: ClinicalContextScreen()),
+        );
+        await tester.pumpAndSettle();
+        expect(find.text('Previous Clinical Context'), findsOneWidget);
 
-      // 4. Validate Recording & Review
-      await tester.pumpWidget(const MaterialApp(home: RecordingReadyScreen()));
-      await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Ready to Record Encounter'), findsOneWidget);
+        // 4. Validate Recording & Review
+        await tester.pumpWidget(
+          const MaterialApp(home: RecordingReadyScreen()),
+        );
+        await tester.pump(const Duration(milliseconds: 500));
+        expect(find.text('Ready to Record Encounter'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: RecordingInProgressScreen()));
-      await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Clinical Encounter'), findsOneWidget);
+        await tester.pumpWidget(
+          const MaterialApp(home: RecordingInProgressScreen()),
+        );
+        await tester.pump(const Duration(milliseconds: 500));
+        expect(find.text('Clinical Encounter'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: RecordingPausedScreen()));
-      await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Recording Paused'), findsOneWidget);
+        await tester.pumpWidget(
+          const MaterialApp(home: RecordingPausedScreen()),
+        );
+        await tester.pump(const Duration(milliseconds: 500));
+        expect(find.text('Recording Paused'), findsOneWidget);
 
-      // 5. Validate AI Processing
-      await tester.pumpWidget(const MaterialApp(home: AiProcessingScreen()));
-      await tester.pump(const Duration(milliseconds: 500));
-      expect(find.text('Clinical Intelligence Engine'), findsOneWidget);
+        // 5. Validate AI Processing
+        await tester.pumpWidget(const MaterialApp(home: AiProcessingScreen()));
+        await tester.pump(const Duration(milliseconds: 500));
+        expect(find.text('Clinical Intelligence Engine'), findsOneWidget);
 
-      // 6. Validate Clinical Documentation
-      await tester.pumpWidget(const MaterialApp(home: PatientReportOverviewScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Clinical Report'), findsOneWidget);
+        // 6. Validate Clinical Documentation
+        await tester.pumpWidget(
+          const MaterialApp(home: PatientReportOverviewScreen()),
+        );
+        await tester.pumpAndSettle();
+        expect(find.text('Clinical Report'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: PatientReportSoapScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('SOAP Clinical Documentation'), findsOneWidget);
+        await tester.pumpWidget(
+          const MaterialApp(home: PatientReportSoapScreen()),
+        );
+        await tester.pumpAndSettle();
+        expect(find.text('SOAP Clinical Documentation'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: PatientReportCodingScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Medical Coding (ICD-10 & CPT)'), findsOneWidget);
+        await tester.pumpWidget(
+          const MaterialApp(home: PatientReportCodingScreen()),
+        );
+        await tester.pumpAndSettle();
+        expect(find.text('Medical Coding (ICD-10 & CPT)'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: ConsultationDetailScreen()));
-      await tester.pumpAndSettle();
-      expect(find.textContaining('Consultation #'), findsOneWidget);
+        await tester.pumpWidget(
+          const MaterialApp(home: ConsultationDetailScreen()),
+        );
+        await tester.pumpAndSettle();
+        expect(find.textContaining('Consultation #'), findsOneWidget);
 
-      // 7. Validate Subscription & Billing
-      await tester.pumpWidget(const MaterialApp(home: PlansScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Experience NourDoc'), findsWidgets);
+        // 7. Validate Subscription & Billing
+        await tester.pumpWidget(const MaterialApp(home: PlansScreen()));
+        await tester.pumpAndSettle();
+        expect(find.text('Experience NourDoc'), findsWidgets);
 
-      await tester.pumpWidget(const MaterialApp(home: PaymentMethodScreen()));
-      await tester.pumpAndSettle();
-      expect(find.textContaining('Payment Method'), findsOneWidget);
+        await tester.pumpWidget(const MaterialApp(home: PaymentMethodScreen()));
+        await tester.pumpAndSettle();
+        expect(find.textContaining('Payment Method'), findsOneWidget);
 
-      // 8. Validate Settings & States
-      await tester.pumpWidget(const MaterialApp(home: SettingsScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Practice Preferences'), findsOneWidget);
+        // 8. Validate Settings & States
+        await tester.pumpWidget(const MaterialApp(home: SettingsScreen()));
+        await tester.pumpAndSettle();
+        expect(find.text('Practice Preferences'), findsOneWidget);
 
-      await tester.pumpWidget(const MaterialApp(home: EmptyStatesScreen()));
-      await tester.pumpAndSettle();
-      expect(find.text('Standardized Empty States'), findsOneWidget);
-    });
+        await tester.pumpWidget(const MaterialApp(home: EmptyStatesScreen()));
+        await tester.pumpAndSettle();
+        expect(find.text('Standardized Empty States'), findsOneWidget);
+      },
+    );
   }
 }

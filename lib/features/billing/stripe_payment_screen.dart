@@ -3,8 +3,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/app_text_field.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/app_text_field.dart';
 import '../../app/routes/app_routes.dart';
 
 class StripePaymentScreen extends StatefulWidget {
@@ -15,7 +15,9 @@ class StripePaymentScreen extends StatefulWidget {
 }
 
 class _StripePaymentScreenState extends State<StripePaymentScreen> {
-  final _cardNumberController = TextEditingController(text: '4242 •••• •••• 4242');
+  final _cardNumberController = TextEditingController(
+    text: '4242 •••• •••• 4242',
+  );
   final _expController = TextEditingController(text: '12/28');
   final _cvvController = TextEditingController(text: '881');
   final _nameController = TextEditingController(text: 'Dr. Muhammad Nouman');
@@ -45,7 +47,10 @@ class _StripePaymentScreenState extends State<StripePaymentScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Credit / Debit Card Checkout', style: AppTypography.cardTitle),
+        title: Text(
+          'Credit / Debit Card Checkout',
+          style: AppTypography.cardTitle,
+        ),
       ),
       body: SafeArea(
         child: Padding(
@@ -70,11 +75,23 @@ class _StripePaymentScreenState extends State<StripePaymentScreen> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('NourDoc Professional', style: AppTypography.cardTitle.copyWith(fontSize: 15)),
-                        Text('Monthly Medical License', style: AppTypography.caption),
+                        Text(
+                          'NourDoc Professional',
+                          style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                        ),
+                        Text(
+                          'Monthly Medical License',
+                          style: AppTypography.caption,
+                        ),
                       ],
                     ),
-                    Text('\$99.00 USD', style: AppTypography.pageTitle.copyWith(fontSize: 20, color: AppColors.deepJade)),
+                    Text(
+                      '\$99.00 USD',
+                      style: AppTypography.pageTitle.copyWith(
+                        fontSize: 20,
+                        color: AppColors.deepJade,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -131,9 +148,16 @@ class _StripePaymentScreenState extends State<StripePaymentScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.lock_outline, size: 14, color: AppColors.slate),
+                  const Icon(
+                    Icons.lock_outline,
+                    size: 14,
+                    color: AppColors.slate,
+                  ),
                   const SizedBox(width: 6),
-                  Text('256-bit encrypted secure checkout via Stripe', style: AppTypography.caption),
+                  Text(
+                    '256-bit encrypted secure checkout via Stripe',
+                    style: AppTypography.caption,
+                  ),
                 ],
               ),
 
@@ -148,9 +172,16 @@ class _StripePaymentScreenState extends State<StripePaymentScreen> {
               Center(
                 child: TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacementNamed(AppRoutes.paymentFailed);
+                    Navigator.of(
+                      context,
+                    ).pushReplacementNamed(AppRoutes.paymentFailed);
                   },
-                  child: Text('Simulate Failure State', style: AppTypography.caption.copyWith(color: AppColors.rose)),
+                  child: Text(
+                    'Simulate Failure State',
+                    style: AppTypography.caption.copyWith(
+                      color: AppColors.rose,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 10),
@@ -161,4 +192,3 @@ class _StripePaymentScreenState extends State<StripePaymentScreen> {
     );
   }
 }
-

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
 
 class PatientTimelineScreen extends StatelessWidget {
   final MockPatient? patient;
@@ -18,28 +18,32 @@ class PatientTimelineScreen extends StatelessWidget {
       {
         'date': 'Today, 10:30 AM',
         'title': 'Outpatient Clinical Encounter (OPD)',
-        'description': 'Assessment for post-viral bronchitis and reactive airway disease. Inhaler prescribed.',
+        'description':
+            'Assessment for post-viral bronchitis and reactive airway disease. Inhaler prescribed.',
         'doctor': 'Dr. Nouman, MD',
         'type': 'Consultation',
       },
       {
         'date': 'Oct 02, 2026, 09:15 AM',
         'title': 'Comprehensive Metabolic & CBC Panel',
-        'description': 'Normal kidney function, normal liver transaminases. WBC 7.2 k/uL.',
+        'description':
+            'Normal kidney function, normal liver transaminases. WBC 7.2 k/uL.',
         'doctor': 'Central Pathology Lab',
         'type': 'Laboratory',
       },
       {
         'date': 'Sep 25, 2026, 04:00 PM',
         'title': 'Pharmacy Medication Dispensation',
-        'description': 'Dispensed Lisinopril 10mg #90 tabs with 3 refills authorized.',
+        'description':
+            'Dispensed Lisinopril 10mg #90 tabs with 3 refills authorized.',
         'doctor': 'Hospital Pharmacy',
         'type': 'Pharmacy',
       },
       {
         'date': 'Aug 14, 2026, 11:00 AM',
         'title': 'Annual Physical Examination & Baseline ECG',
-        'description': 'Sinus rhythm, no ischemic ST changes. Blood pressure recorded at 130/84 mmHg.',
+        'description':
+            'Sinus rhythm, no ischemic ST changes. Blood pressure recorded at 130/84 mmHg.',
         'doctor': 'Dr. Nouman, MD',
         'type': 'Consultation',
       },
@@ -48,7 +52,10 @@ class PatientTimelineScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Longitudinal Timeline: ${p.name}', style: AppTypography.cardTitle),
+        title: Text(
+          'Longitudinal Timeline: ${p.name}',
+          style: AppTypography.cardTitle,
+        ),
       ),
       body: SafeArea(
         child: ListView.builder(
@@ -74,11 +81,7 @@ class PatientTimelineScreen extends StatelessWidget {
                       ),
                     ),
                     if (index < events.length - 1)
-                      Container(
-                        width: 2,
-                        height: 90,
-                        color: AppColors.border,
-                      ),
+                      Container(width: 2, height: 90, color: AppColors.border),
                   ],
                 ),
                 const SizedBox(width: 14),
@@ -107,16 +110,31 @@ class PatientTimelineScreen extends StatelessWidget {
                               ),
                               Text(
                                 ev['date']!,
-                                style: AppTypography.caption.copyWith(color: AppColors.slate),
+                                style: AppTypography.caption.copyWith(
+                                  color: AppColors.slate,
+                                ),
                               ),
                             ],
                           ),
                           const SizedBox(height: 6),
-                          Text(ev['title']!, style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                          Text(
+                            ev['title']!,
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 14,
+                            ),
+                          ),
                           const SizedBox(height: 4),
-                          Text(ev['description']!, style: AppTypography.body.copyWith(fontSize: 13)),
+                          Text(
+                            ev['description']!,
+                            style: AppTypography.body.copyWith(fontSize: 13),
+                          ),
                           const SizedBox(height: 8),
-                          Text('Provider: ${ev['doctor']}', style: AppTypography.caption.copyWith(fontStyle: FontStyle.italic)),
+                          Text(
+                            'Provider: ${ev['doctor']}',
+                            style: AppTypography.caption.copyWith(
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -130,4 +148,3 @@ class PatientTimelineScreen extends StatelessWidget {
     );
   }
 }
-

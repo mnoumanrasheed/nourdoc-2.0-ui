@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/brand_logo.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/brand_logo.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -71,7 +71,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.screenHorizontal),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.screenHorizontal,
+          ),
           child: Column(
             children: [
               Expanded(
@@ -109,7 +111,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                           const SizedBox(height: 32),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 5,
+                            ),
                             decoration: BoxDecoration(
                               color: AppColors.paleJade,
                               borderRadius: BorderRadius.circular(20),
@@ -126,7 +131,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           Text(
                             item['title'] as String,
                             textAlign: TextAlign.center,
-                            style: AppTypography.pageTitle.copyWith(fontSize: 24),
+                            style: AppTypography.pageTitle.copyWith(
+                              fontSize: 24,
+                            ),
                           ),
                           const SizedBox(height: 12),
                           Padding(
@@ -156,7 +163,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     width: _currentPage == i ? 24 : 8,
                     height: 8,
                     decoration: BoxDecoration(
-                      color: _currentPage == i ? AppColors.deepJade : AppColors.border,
+                      color: _currentPage == i
+                          ? AppColors.deepJade
+                          : AppColors.border,
                       borderRadius: BorderRadius.circular(4),
                     ),
                   ),
@@ -164,7 +173,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               const SizedBox(height: 32),
               AppButton(
-                label: _currentPage == _pages.length - 1 ? 'Get Started' : 'Next',
+                label: _currentPage == _pages.length - 1
+                    ? 'Get Started'
+                    : 'Next',
                 onPressed: () {
                   if (_currentPage < _pages.length - 1) {
                     _pageController.nextPage(
@@ -192,4 +203,3 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 }
-

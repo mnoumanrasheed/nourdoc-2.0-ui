@@ -14,4 +14,3 @@ class AppSpacing {
   // Screen horizontal padding standard
   static const double screenHorizontal = 18.0;
 }
-

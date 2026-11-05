@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
+import '../../theme/app_colors.dart';
 import 'mock_models.dart';
 
 class MockData {
@@ -99,7 +99,8 @@ class MockData {
         bloodPressure: '120/78 mmHg',
         bloodSugar: '98 mg/dL',
       ),
-      chiefComplaint: 'Scheduled endoscopic sinus surgery preoperative clearance.',
+      chiefComplaint:
+          'Scheduled endoscopic sinus surgery preoperative clearance.',
     ),
   ];
 
@@ -138,14 +139,16 @@ class MockData {
     ),
     MockCoding(
       code: '99214',
-      description: 'Office/outpatient visit for evaluation & management, established patient (30-39 min)',
+      description:
+          'Office/outpatient visit for evaluation & management, established patient (30-39 min)',
       category: 'CPT',
       isConfirmed: true,
       confidence: 0.95,
     ),
     MockCoding(
       code: '94010',
-      description: 'Spirometry, including graphic record, total and timed vital capacity',
+      description:
+          'Spirometry, including graphic record, total and timed vital capacity',
       category: 'CPT',
       isConfirmed: false,
       confidence: 0.88,
@@ -156,28 +159,32 @@ class MockData {
     MockEvidence(
       id: 'EV-01',
       type: 'Patient Evidence',
-      text: '"The cough has been going on for about three weeks now, usually worse when I lie down at night."',
+      text:
+          '"The cough has been going on for about three weeks now, usually worse when I lie down at night."',
       timestamp: '01:42',
       speaker: 'Sarah Ahmed (Patient)',
     ),
     MockEvidence(
       id: 'EV-02',
       type: 'Patient Evidence',
-      text: '"I tried cough syrup from the pharmacy but it didn\'t really do anything for the tightness in my chest."',
+      text:
+          '"I tried cough syrup from the pharmacy but it didn\'t really do anything for the tightness in my chest."',
       timestamp: '03:15',
       speaker: 'Sarah Ahmed (Patient)',
     ),
     MockEvidence(
       id: 'EV-03',
       type: 'External Reference',
-      text: 'Chest auscultation revealed localized expiratory wheezing in right mid zone without dullness to percussion.',
+      text:
+          'Chest auscultation revealed localized expiratory wheezing in right mid zone without dullness to percussion.',
       timestamp: '05:28',
       speaker: 'Dr. Ahmed (Clinician)',
     ),
     MockEvidence(
       id: 'EV-04',
       type: 'AI Interpretation',
-      text: 'Clinical triad of prolonged dry cough, expiratory wheeze, and nocturnal exacerbation correlates with post-infectious bronchial hyperreactivity.',
+      text:
+          'Clinical triad of prolonged dry cough, expiratory wheeze, and nocturnal exacerbation correlates with post-infectious bronchial hyperreactivity.',
       timestamp: '06:10',
       speaker: 'NourDoc Clinical Intelligence',
     ),
@@ -189,8 +196,10 @@ class MockData {
       title: 'Potential Medication Interaction Risk',
       severity: 'Review Required',
       severityColor: AppColors.warmAmber,
-      description: 'Concurrent ACE inhibitor therapy noted in longitudinal history may potentiate chronic cough.',
-      whyFlagged: 'Patient is recorded taking Lisinopril 10mg daily; cough onset coincides with 4-month refill duration.',
+      description:
+          'Concurrent ACE inhibitor therapy noted in longitudinal history may potentiate chronic cough.',
+      whyFlagged:
+          'Patient is recorded taking Lisinopril 10mg daily; cough onset coincides with 4-month refill duration.',
       timestamp: '04:12',
       confidence: 0.89,
     ),
@@ -199,8 +208,10 @@ class MockData {
       title: 'Missing Baseline Spirometry',
       severity: 'Advisory',
       severityColor: AppColors.clinicalBlue,
-      description: 'Diagnostic confirmation for reactive airway requires documented spirometry pre/post bronchodilator.',
-      whyFlagged: 'Order generated in plan without prior baseline record in EHR profile.',
+      description:
+          'Diagnostic confirmation for reactive airway requires documented spirometry pre/post bronchodilator.',
+      whyFlagged:
+          'Order generated in plan without prior baseline record in EHR profile.',
       timestamp: '07:45',
       confidence: 0.94,
     ),
@@ -285,7 +296,8 @@ class MockData {
     MockNotification(
       id: 'N-01',
       title: 'Report Ready for Review',
-      message: 'Consultation report for Bilal Ahmed is generated and awaits clinician sign-off.',
+      message:
+          'Consultation report for Bilal Ahmed is generated and awaits clinician sign-off.',
       timeAgo: '10m ago',
       icon: Icons.assignment_turned_in_outlined,
       color: AppColors.deepJade,
@@ -309,7 +321,8 @@ class MockData {
     MockNotification(
       id: 'N-04',
       title: 'Subscription Active',
-      message: 'Your NourDoc Professional workspace subscription is in good standing.',
+      message:
+          'Your NourDoc Professional workspace subscription is in good standing.',
       timeAgo: '1d ago',
       icon: Icons.verified_outlined,
       color: AppColors.deepJade,

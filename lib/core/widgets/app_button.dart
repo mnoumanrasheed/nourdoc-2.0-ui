@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_typography.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_typography.dart';
 
 enum ButtonVariant { primary, secondary, outline, text, destructive }
 
@@ -65,7 +65,9 @@ class AppButton extends StatelessWidget {
     }
 
     final effectiveBg = onPressed == null ? Colors.grey.shade300 : getBgColor();
-    final effectiveText = onPressed == null ? Colors.grey.shade600 : getTextColor();
+    final effectiveText = onPressed == null
+        ? Colors.grey.shade600
+        : getTextColor();
 
     return SizedBox(
       width: width ?? double.infinity,
@@ -100,7 +102,9 @@ class AppButton extends StatelessWidget {
                       Flexible(
                         child: Text(
                           label,
-                          style: AppTypography.button.copyWith(color: effectiveText),
+                          style: AppTypography.button.copyWith(
+                            color: effectiveText,
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -113,4 +117,3 @@ class AppButton extends StatelessWidget {
     );
   }
 }
-

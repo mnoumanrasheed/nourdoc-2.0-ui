@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_colors.dart';
-import '../../core/theme/app_radius.dart';
-import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_models.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_radius.dart';
+import '../theme/app_typography.dart';
+import '../models/mock/mock_models.dart';
 
 class CareSettingBadge extends StatelessWidget {
   final CareSetting setting;
@@ -149,4 +149,3 @@ class ConfidenceBadge extends StatelessWidget {
     );
   }
 }
-

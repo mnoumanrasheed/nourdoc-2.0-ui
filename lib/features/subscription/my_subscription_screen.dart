@@ -3,7 +3,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../shared/widgets/app_button.dart';
+import '../../core/widgets/app_button.dart';
 import '../../app/routes/app_routes.dart';
 
 class MySubscriptionScreen extends StatelessWidget {
@@ -39,25 +39,40 @@ class MySubscriptionScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Professional Plan',
-                        style: AppTypography.cardTitle.copyWith(fontSize: 18, color: AppColors.deepJade),
+                        style: AppTypography.cardTitle.copyWith(
+                          fontSize: 18,
+                          color: AppColors.deepJade,
+                        ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: AppColors.paleJade,
                           borderRadius: AppRadius.smBorder,
                         ),
                         child: Text(
                           'Active',
-                          style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.bold),
+                          style: AppTypography.caption.copyWith(
+                            color: AppColors.deepJade,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 6),
-                  Text('\$99.00 / month', style: AppTypography.pageTitle.copyWith(fontSize: 24)),
+                  Text(
+                    '\$99.00 / month',
+                    style: AppTypography.pageTitle.copyWith(fontSize: 24),
+                  ),
                   const SizedBox(height: 8),
-                  Text('Renews on November 01, 2026 via Visa •••• 4242', style: AppTypography.caption),
+                  Text(
+                    'Renews on November 01, 2026 via Visa •••• 4242',
+                    style: AppTypography.caption,
+                  ),
                   const SizedBox(height: 16),
                   const Divider(height: 1),
                   const SizedBox(height: 14),
@@ -66,8 +81,16 @@ class MySubscriptionScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Consultations this billing cycle', style: AppTypography.caption),
-                      Text('42 / Unlimited', style: AppTypography.caption.copyWith(fontWeight: FontWeight.bold)),
+                      Text(
+                        'Consultations this billing cycle',
+                        style: AppTypography.caption,
+                      ),
+                      Text(
+                        '42 / Unlimited',
+                        style: AppTypography.caption.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
@@ -95,9 +118,18 @@ class MySubscriptionScreen extends StatelessWidget {
               child: Column(
                 children: [
                   ListTile(
-                    leading: const Icon(Icons.credit_card_outlined, color: AppColors.deepJade),
-                    title: Text('Payment Method', style: AppTypography.bodyMedium),
-                    subtitle: Text('Visa ending in 4242', style: AppTypography.caption),
+                    leading: const Icon(
+                      Icons.credit_card_outlined,
+                      color: AppColors.deepJade,
+                    ),
+                    title: Text(
+                      'Payment Method',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Visa ending in 4242',
+                      style: AppTypography.caption,
+                    ),
                     trailing: const Icon(Icons.chevron_right, size: 20),
                     onTap: () {
                       Navigator.of(context).pushNamed(AppRoutes.paymentMethod);
@@ -105,9 +137,18 @@ class MySubscriptionScreen extends StatelessWidget {
                   ),
                   const Divider(height: 1),
                   ListTile(
-                    leading: const Icon(Icons.receipt_outlined, color: AppColors.deepJade),
-                    title: Text('Billing & Invoices', style: AppTypography.bodyMedium),
-                    subtitle: Text('Download tax receipts and history', style: AppTypography.caption),
+                    leading: const Icon(
+                      Icons.receipt_outlined,
+                      color: AppColors.deepJade,
+                    ),
+                    title: Text(
+                      'Billing & Invoices',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Download tax receipts and history',
+                      style: AppTypography.caption,
+                    ),
                     trailing: const Icon(Icons.chevron_right, size: 20),
                     onTap: () {
                       Navigator.of(context).pushNamed(AppRoutes.invoiceHistory);
@@ -115,9 +156,18 @@ class MySubscriptionScreen extends StatelessWidget {
                   ),
                   const Divider(height: 1),
                   ListTile(
-                    leading: const Icon(Icons.speed_outlined, color: AppColors.deepJade),
-                    title: Text('Plan Usage Details', style: AppTypography.bodyMedium),
-                    subtitle: Text('Encounter & storage allocation', style: AppTypography.caption),
+                    leading: const Icon(
+                      Icons.speed_outlined,
+                      color: AppColors.deepJade,
+                    ),
+                    title: Text(
+                      'Plan Usage Details',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Encounter & storage allocation',
+                      style: AppTypography.caption,
+                    ),
                     trailing: const Icon(Icons.chevron_right, size: 20),
                     onTap: () {
                       Navigator.of(context).pushNamed(AppRoutes.usageLimits);
@@ -140,10 +190,17 @@ class MySubscriptionScreen extends StatelessWidget {
               child: TextButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Subscription cancellation request submitted')),
+                    const SnackBar(
+                      content: Text(
+                        'Subscription cancellation request submitted',
+                      ),
+                    ),
                   );
                 },
-                child: Text('Cancel Subscription', style: AppTypography.metadata.copyWith(color: AppColors.rose)),
+                child: Text(
+                  'Cancel Subscription',
+                  style: AppTypography.metadata.copyWith(color: AppColors.rose),
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -153,4 +210,3 @@ class MySubscriptionScreen extends StatelessWidget {
     );
   }
 }
-

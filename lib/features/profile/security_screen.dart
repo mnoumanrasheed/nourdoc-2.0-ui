@@ -39,12 +39,19 @@ class _SecurityScreenState extends State<SecurityScreen> {
               ),
               child: Row(
                 children: [
-                  const Icon(Icons.security, color: AppColors.deepJade, size: 22),
+                  const Icon(
+                    Icons.security,
+                    color: AppColors.deepJade,
+                    size: 22,
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       'HIPAA & Clinical Compliance Active. Protected Health Information (PHI) is protected with biometric local encryption.',
-                      style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.bold),
+                      style: AppTypography.caption.copyWith(
+                        color: AppColors.deepJade,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -63,24 +70,42 @@ class _SecurityScreenState extends State<SecurityScreen> {
               child: Column(
                 children: [
                   SwitchListTile(
-                    title: Text('Biometric Authentication', style: AppTypography.bodyMedium),
-                    subtitle: Text('Require Touch ID / Face ID to access clinical encounters', style: AppTypography.caption),
+                    title: Text(
+                      'Biometric Authentication',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Require Touch ID / Face ID to access clinical encounters',
+                      style: AppTypography.caption,
+                    ),
                     value: _biometricUnlock,
                     activeColor: AppColors.deepJade,
                     onChanged: (v) => setState(() => _biometricUnlock = v),
                   ),
                   const Divider(height: 1),
                   SwitchListTile(
-                    title: Text('Two-Factor Authentication (2FA)', style: AppTypography.bodyMedium),
-                    subtitle: Text('SMS OTP verification required upon signing in', style: AppTypography.caption),
+                    title: Text(
+                      'Two-Factor Authentication (2FA)',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'SMS OTP verification required upon signing in',
+                      style: AppTypography.caption,
+                    ),
                     value: _twoFactorAuth,
                     activeColor: AppColors.deepJade,
                     onChanged: (v) => setState(() => _twoFactorAuth = v),
                   ),
                   const Divider(height: 1),
                   SwitchListTile(
-                    title: Text('Auto-Lock on Background', style: AppTypography.bodyMedium),
-                    subtitle: Text('Instantly locks screen if application is minimized', style: AppTypography.caption),
+                    title: Text(
+                      'Auto-Lock on Background',
+                      style: AppTypography.bodyMedium,
+                    ),
+                    subtitle: Text(
+                      'Instantly locks screen if application is minimized',
+                      style: AppTypography.caption,
+                    ),
                     value: _autoLockOnBackground,
                     activeColor: AppColors.deepJade,
                     onChanged: (v) => setState(() => _autoLockOnBackground = v),
@@ -105,16 +130,34 @@ class _SecurityScreenState extends State<SecurityScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Primary Clinic Mobile Device', style: AppTypography.cardTitle.copyWith(fontSize: 14)),
+                      Text(
+                        'Primary Clinic Mobile Device',
+                        style: AppTypography.cardTitle.copyWith(fontSize: 14),
+                      ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(color: AppColors.paleJade, borderRadius: AppRadius.xsBorder),
-                        child: Text('Current Device', style: AppTypography.caption.copyWith(color: AppColors.deepJade, fontWeight: FontWeight.bold)),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.paleJade,
+                          borderRadius: AppRadius.xsBorder,
+                        ),
+                        child: Text(
+                          'Current Device',
+                          style: AppTypography.caption.copyWith(
+                            color: AppColors.deepJade,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text('iOS / Android • Last active: Just now', style: AppTypography.caption),
+                  Text(
+                    'iOS / Android • Last active: Just now',
+                    style: AppTypography.caption,
+                  ),
                 ],
               ),
             ),
@@ -124,4 +167,3 @@ class _SecurityScreenState extends State<SecurityScreen> {
     );
   }
 }
-

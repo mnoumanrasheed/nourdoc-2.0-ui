@@ -4,18 +4,19 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_radius.dart';
 import '../../core/theme/app_spacing.dart';
 import '../../core/theme/app_typography.dart';
-import '../../models/mock/mock_data.dart';
-import '../../models/mock/mock_models.dart';
-import '../../shared/widgets/app_button.dart';
-import '../../shared/widgets/clinical_badges.dart';
-import '../../shared/widgets/organic_waveform.dart';
+import '../../core/models/mock/mock_data.dart';
+import '../../core/models/mock/mock_models.dart';
+import '../../core/widgets/app_button.dart';
+import '../../core/widgets/clinical_badges.dart';
+import '../../core/widgets/organic_waveform.dart';
 import '../../app/routes/app_routes.dart';
 
 class RecordingInProgressScreen extends StatefulWidget {
   const RecordingInProgressScreen({super.key});
 
   @override
-  State<RecordingInProgressScreen> createState() => _RecordingInProgressScreenState();
+  State<RecordingInProgressScreen> createState() =>
+      _RecordingInProgressScreenState();
 }
 
 class _RecordingInProgressScreenState extends State<RecordingInProgressScreen> {
@@ -62,7 +63,9 @@ class _RecordingInProgressScreenState extends State<RecordingInProgressScreen> {
             style: ElevatedButton.styleFrom(backgroundColor: AppColors.rose),
             onPressed: () {
               Navigator.of(ctx).pop();
-              Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
+              Navigator.of(
+                context,
+              ).pushNamedAndRemoveUntil(AppRoutes.mainNav, (r) => false);
             },
             child: const Text('Discard', style: TextStyle(color: Colors.white)),
           ),
@@ -113,7 +116,9 @@ class _RecordingInProgressScreenState extends State<RecordingInProgressScreen> {
                         children: [
                           Text(
                             patient.name,
-                            style: AppTypography.cardTitle.copyWith(fontSize: 15),
+                            style: AppTypography.cardTitle.copyWith(
+                              fontSize: 15,
+                            ),
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 2),
@@ -185,14 +190,18 @@ class _RecordingInProgressScreenState extends State<RecordingInProgressScreen> {
                   OutlinedButton.icon(
                     onPressed: () {
                       _timer?.cancel();
-                      Navigator.of(context).pushReplacementNamed(AppRoutes.recordingPaused);
+                      Navigator.of(
+                        context,
+                      ).pushReplacementNamed(AppRoutes.recordingPaused);
                     },
                     icon: const Icon(Icons.pause, size: 18),
                     label: const Text('Pause Recording'),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: AppColors.charcoal,
                       side: const BorderSide(color: AppColors.border),
-                      shape: RoundedRectangleBorder(borderRadius: AppRadius.smBorder),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: AppRadius.smBorder,
+                      ),
                     ),
                   ),
                 ],
@@ -205,7 +214,9 @@ class _RecordingInProgressScreenState extends State<RecordingInProgressScreen> {
                 icon: Icons.check_circle_outline,
                 onPressed: () {
                   _timer?.cancel();
-                  Navigator.of(context).pushReplacementNamed(AppRoutes.consultationSubmitted);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(AppRoutes.consultationSubmitted);
                 },
               ),
               const SizedBox(height: 12),
@@ -216,4 +227,3 @@ class _RecordingInProgressScreenState extends State<RecordingInProgressScreen> {
     );
   }
 }
-
